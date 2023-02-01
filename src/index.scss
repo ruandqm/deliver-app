@@ -3,3 +3,16 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+:root {
+  --mainColor: #EEEEEE;
+  --accent-color: #042940;
+  --green: #DBF227;
+  --secondary-color: #D9D9D9;
+  --text-color: #FFF;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 16px;
+}
