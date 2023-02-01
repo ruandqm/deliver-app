@@ -1,4 +1,5 @@
-import React from 'react'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
 import { Navbar } from '../../components/Navbar/index'
 import SearchRestaurant from '../../components/SearchRestaurant/SearchRestaurant'
 

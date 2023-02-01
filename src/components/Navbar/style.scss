@@ -30,14 +30,16 @@
     }
 
     .return {
-        display: flex;
-        gap: 0.5rem;
-        cursor: pointer;
-        align-items: center;
-        color: var(--text-color);
+        a {
+            display: flex;
+            gap: 0.5rem;
+            cursor: pointer;
+            align-items: center;
+            color: var(--text-color);
 
-        span {
-            font-weight: 600;
+            span {
+                font-weight: 600;
+            }
         }
     }
 
@@ -48,6 +50,11 @@
 
         a {
             cursor: pointer;
+
+            img {
+                width: 2.5rem;
+                height: 2.5rem;
+            }
         }
     }
 }
