@@ -1,0 +1,9 @@
+.cards{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 15vh);
+    text-align: center;   
+    margin-left: 10vw;
+    margin-right: 10vw;
+    gap: 1vw;
+}
