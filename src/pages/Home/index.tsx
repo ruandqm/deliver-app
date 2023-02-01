@@ -5,16 +5,12 @@ import SearchRestaurant from '../../components/SearchRestaurant/SearchRestaurant
 
 export const Home = () => {
 
-    return (
-        <>
+    return (        
 
             <div className='homeContainer'>
                 <Navbar isHome={true} />
-            </div>
-
                 <SearchRestaurant />
-
-        </>
+            </div>
 
     )
 }
