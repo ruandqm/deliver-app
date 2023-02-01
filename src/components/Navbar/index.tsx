@@ -7,7 +7,7 @@ export const Navbar = (props: any) => {
 
     return (
         <header className='mainNavbar'>
-            <a href="#"><h2>DeliverApp</h2></a>
+            <a className='brand' href="#"><h2>DeliverApp</h2></a>
 
             {props.isHome ? (<div className="searchBar">
                 <span className="material-symbols-outlined">

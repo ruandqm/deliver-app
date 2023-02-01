@@ -10,7 +10,12 @@
         color: var(--text-color);
     }
 
+    .brand {
+        grid-area: brand;
+    }
+
     .searchBar {
+        grid-area: search;
         background-color: var(--text-color);
         padding: 0.3rem 0.5rem;
         border-radius: 1rem;
@@ -36,13 +41,29 @@
         }
     }
 
-
     nav {
+        grid-area: nav;
         display: flex;
         gap: 0.5rem;
 
         a {
             cursor: pointer;
+        }
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .mainNavbar {
+        display: grid;
+        grid-template: "brand nav" 1fr
+            "search search" 1fr / 1fr 1fr;
+
+        .brand {
+            margin-bottom: 0.8rem;
+        }
+
+        nav {
+            justify-content: end;
         }
     }
 }
