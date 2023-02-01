@@ -3,6 +3,6 @@ import { Navbar } from '../../components/Navbar'
 
 export const Requests = () => {
     return (
-        <div> <Navbar /></div>
+        <div> <Navbar isRequest={true} /></div>
     )
 }
