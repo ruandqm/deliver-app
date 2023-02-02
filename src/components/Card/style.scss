@@ -30,14 +30,18 @@
     }
 }
 
-@media screen and (max-width: 1230px) {
+@media screen and (max-width: 1345px) {
     .cardContainer {
         img {
             height: 15vh;
-            margin-left: 0;
-            float: left;
-            border-radius: 100px;
+        }
+    }
+}
 
+@media screen and (max-width: 450px) {
+    .cardContainer {
+        img {
+            height: 10vh;
         }
     }
 }
