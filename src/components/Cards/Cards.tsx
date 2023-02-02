@@ -11,9 +11,10 @@ const RestaurantList: React.FC<ICards> = ({ data, status }) => {
     }
     return (
         <div className="cardsContainer">
+            <h1>Restaurantes</h1>
             {status === "loading" && <div>Loading...</div>}
             {status === "error" && <div>Error fetching produtos</div>}
-            {status === "success" && <section className="cards"> {restaurantCard(data)}</section>}
+            {status === "success" && <section className="cards"> {restaurantCard(data)} </section>}
         </div>
     )
 }

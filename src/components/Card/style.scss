@@ -1,6 +1,43 @@
 .cardContainer {
+    background-color: white;
+    align-items: center;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+
+    .propertiesName,
+    .propertiesSobre {
+        margin-left: 11vw;
+    }
+
+    h3 {
+        margin-top: 2vh;
+    }
+
+    p {
+        margin-top: 1vh;
+
+        img {
+            height: 3vh;
+        }
+    }
+
     img {
-        height: 5vh;
+        height: 20vh;
         margin-left: 0;
+        float: left;
+        border-radius: 100px;
+
+    }
+}
+
+@media screen and (max-width: 1230px) {
+    .cardContainer {
+        img {
+            height: 15vh;
+            margin-left: 0;
+            float: left;
+            border-radius: 100px;
+
+        }
     }
 }
