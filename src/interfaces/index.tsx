@@ -16,3 +16,8 @@ export interface ICards {
     data: IRestaurant[],
     status: string
 }
+
+export interface IModal {
+    isOpen: boolean
+}
+
