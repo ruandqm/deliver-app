@@ -67,7 +67,7 @@ const Modal: React.FC<IModal> = (props) => {
                     <label htmlFor="">Sobre:</label>
                     <br></br>
                     <textarea name="sobre" onChange={formik.handleChange} value={formik.values.sobre}></textarea>
-                    {<p>{formik.errors.sobre}</p>}
+                    {formik.errors.sobre}
                     <br></br> 
                     <button type="submit">Cadastrar</button>               
                 </div>
