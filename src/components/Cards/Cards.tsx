@@ -1,6 +1,7 @@
 import Card from "../Card/Card"
 import "./style.scss"
 import { ICards, IRestaurant } from "../../interfaces/index"
+import Modal from "../Modal/Modal"
 
 const RestaurantList: React.FC<ICards> = ({ data, status }) => {
 
@@ -13,12 +14,16 @@ const RestaurantList: React.FC<ICards> = ({ data, status }) => {
         }
     }
     return (
+        
         <div className="cardsContainer">
             <h1>Restaurantes</h1>
             {status === "loading" && <div>Loading...</div>}
             {status === "error" && <div>Error fetching produtos</div>}
             {status === "success" && <section className="cards"> {restaurantCard(data)} </section>}
         </div>
+
+        
+        
     )
 }
 
