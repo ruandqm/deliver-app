@@ -1,16 +1,16 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { Navbar } from '../../components/Navbar/index'
-import SearchRestaurant from '../../components/SearchRestaurant/SearchRestaurant'
+import Restaurants from '../../components/Restaurants'
 
 export const Home = () => {
 
-    return (        
+    return (
 
-            <div className='homeContainer'>
-                <Navbar isHome={true} />
-                <SearchRestaurant />
-            </div>
+        <div className='homeContainer'>
+            <Navbar isHome={true} />
+            <Restaurants />
+        </div>
 
     )
 }

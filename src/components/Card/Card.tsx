@@ -2,7 +2,7 @@ import { IRestaurant } from "../../interfaces/index"
 import "./style.scss"
 import StarIcon from "../../assets/images/star.svg"
 
-const Img: React.FC<IRestaurant> = (props) => {
+const Card: React.FC<IRestaurant> = (props) => {
 
     return (
         <div className="cardContainer">
@@ -14,4 +14,4 @@ const Img: React.FC<IRestaurant> = (props) => {
     )
 }
 
-export default Img
+export default Card
