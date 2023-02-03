@@ -1,8 +1,11 @@
 .cardContainer {
+    text-decoration: none;
+    color: black;
     background-color: white;
     align-items: center;
     border-radius: 20px;
     padding: 0.5rem 1rem;
+    cursor: pointer;
 
     .propertiesName,
     .propertiesSobre {
