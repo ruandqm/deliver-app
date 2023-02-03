@@ -47,7 +47,7 @@ const Modal: React.FC<IModal> = (props) => {
         return (
             <form className="modalContainer" onSubmit={formik.handleSubmit}>
                 <div className="modalCard">
-                    <p><img src={Vector} className="exit" /></p>
+                    <p><img src={Vector} className="btnExit" /></p>
                     <h2 className="title">Cadastrar Restaurante</h2>
                     <label htmlFor="">Nome:</label>
                     <br></br>
@@ -59,7 +59,7 @@ const Modal: React.FC<IModal> = (props) => {
                     <input type="text" name="categoria" onChange={formik.handleChange} value={formik.values.categoria}/>
                     {formik.errors.categoria}
                     <br></br>
-                    <label htmlFor="">URL:</label>
+                    <label htmlFor="">Url do logo:</label>
                     <br></br>
                     <input type="text" name="url" onChange={formik.handleChange} value={formik.values.url}/>
                     {formik.errors.url}
