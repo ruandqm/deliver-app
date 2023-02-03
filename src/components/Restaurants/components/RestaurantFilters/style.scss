@@ -1,0 +1,13 @@
+.homeFilters {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin: 1rem;
+
+    select {
+        padding: 0.5rem;
+        border-radius: 1rem;
+        width: 8rem;
+        text-align: center;
+    }
+}
