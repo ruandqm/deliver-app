@@ -10,10 +10,12 @@ export const RestaurantFilters = () => {
         filteredRestaurants,
         setFilteredRestaurants,
         data,
-        status } = useContext(HomeContext)
+        status,
+        search } = useContext(HomeContext)
     const [render, toRender] = useState(false)
     const [categoryFilter, setCategoryFilter] = useState('all')
     const [sortFilter, setSortFilter] = useState('all')
+    const [restaurants, setRestaurants] = useState<IRestaurant[]>([])
 
     const GetCategories = () => {
         data.map((restaurant: IRestaurant) => {
@@ -24,6 +26,12 @@ export const RestaurantFilters = () => {
         setIsGet(true)
     }
 
+    useEffect(() => {
+        if (search != undefined) {
+            setFilteredRestaurants(restaurants.filter(restaurant => new RegExp(search, 'i').test(restaurant.nome)))
+        }
+    }, [search])
+
     const SetFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
         e.target.name == 'categoryFilter' ? (
             setCategoryFilter(e.target.value)
@@ -33,36 +41,38 @@ export const RestaurantFilters = () => {
     }
 
     const FilterData = (reset?: boolean) => {
-        let array = data
+        let dataToFilter = data
         if (categoryFilter != 'all') {
-            array = array.filter((restaurant: IRestaurant) => {
+            dataToFilter = dataToFilter.filter((restaurant: IRestaurant) => {
                 return restaurant.categoria == categoryFilter
             })
             if (!reset) {
-                setFilteredRestaurants(SortData(array, true))
+                setFilteredRestaurants(SortData(dataToFilter, true))
+                setRestaurants(SortData(dataToFilter, true))
             }
         }
         if (reset) {
-            return array
+            return dataToFilter
         }
         else {
-            setFilteredRestaurants(array)
+            setFilteredRestaurants(dataToFilter)
+            setRestaurants(dataToFilter)
         }
     }
 
-    const SortData = (array: any, filtering?: boolean) => {
+    const SortData = (dataToSort: any, filtering?: boolean) => {
         if (sortFilter != 'all') {
             if (sortFilter === 'bigger') {
-                return (array.sort((a: IRestaurant, b: IRestaurant) => {
+                return (dataToSort.sort((a: IRestaurant, b: IRestaurant) => {
                     return b.avaliacao - a.avaliacao
                 }))
             } else if (sortFilter === 'smaller') {
-                return (array.sort((a: IRestaurant, b: IRestaurant) => {
+                return (dataToSort.sort((a: IRestaurant, b: IRestaurant) => {
                     return a.avaliacao - b.avaliacao
                 }))
             }
         } else if (filtering) {
-            return array
+            return dataToSort
         }
         else {
             return FilterData(true)
@@ -81,11 +91,11 @@ export const RestaurantFilters = () => {
 
     useEffect(() => {
         if (isGet) {
-            const array = [...filteredRestaurants]
-            setFilteredRestaurants(SortData(array))
+            const dataToSort = [...filteredRestaurants]
+            setFilteredRestaurants(SortData(dataToSort))
+            setRestaurants(SortData(dataToSort))
             toRender(!render)
         }
-
     }, [sortFilter])
 
     useEffect(() => {
@@ -93,6 +103,7 @@ export const RestaurantFilters = () => {
 
     useEffect(() => {
         setFilteredRestaurants(data)
+        setRestaurants(data)
     }, [data])
 
     return (

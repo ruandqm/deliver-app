@@ -5,10 +5,8 @@ import { useState } from "react"
 
 const Card: React.FC<IRestaurant> = (props) => {
 
-    const [clickRestaurant, setClickRestaurant] = useState(0)
-
     return (
-        <div onClick={() => setClickRestaurant(props.id)} className="cardContainer">
+        <div className="cardContainer">
             <img src={props.url} />
             <h3 className="propertiesName">{props.nome}</h3>
             <p> <img src={StarIcon} className="properties" /> {props.avaliacao} - {props.categoria}</p>

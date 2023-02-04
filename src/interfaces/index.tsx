@@ -1,9 +1,13 @@
+import { FunctionComponent } from "react"
+
 export interface InavbarProps {
     isHome?: boolean,
     isRequest?: boolean
+    modalOpen?: React.MouseEventHandler,
+    search?: React.ChangeEventHandler,
 }
 
-export interface IRestaurant {  
+export interface IRestaurant {
     url: string,
     nome: string,
     categoria: string,
