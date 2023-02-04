@@ -8,7 +8,7 @@ export const Navbar = (props: InavbarProps) => {
 
     return (
         <header className='mainNavbar'>
-            <a className='brand' href="#"><h2>DeliverApp</h2></a>
+            <a className='brand' href="/"><h2>DeliverApp</h2></a>
 
             {/* Ternaries check which page the navbar is on to display the correct icons */}
 

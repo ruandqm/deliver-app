@@ -4,14 +4,15 @@ import StarIcon from "../../assets/images/star.svg"
 import { useState } from "react"
 
 const Card: React.FC<IRestaurant> = (props) => {
+    const redirect = `/restaurant/:${props.id}`
 
     return (
-        <div className="cardContainer">
+        <a href={redirect} className="cardContainer">
             <img src={props.url} />
             <h3 className="propertiesName">{props.nome}</h3>
             <p> <img src={StarIcon} className="properties" /> {props.avaliacao} - {props.categoria}</p>
             <p className="propertiesSobre">{props.sobre}</p>
-        </div>
+        </a>
     )
 }
 

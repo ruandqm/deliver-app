@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Modal from '../../components/Modal/Modal'
-import { Navbar } from '../../components/Navbar/index'
-import Restaurants from '../../components/Restaurants'
+import { Navbar } from '../../components/Navbar/Navbar'
+import Restaurants from '../../components/Restaurants/Restaurant'
 import { HomeContext } from '../../contexts'
 
 export const Home = () => {
