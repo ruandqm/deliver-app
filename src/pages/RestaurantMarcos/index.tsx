@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navbar } from '../../components/Navbar'
+import { Navbar } from '../../components/Navbar/Navbar'
 import { IRestaurant } from '../../interfaces'
 
 export const RestaurantMarcos = () => {
