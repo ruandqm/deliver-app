@@ -3,16 +3,8 @@ import AddRestaurantIcon from '../../assets/images/addRestaurant.svg'
 import CartIcon from '../../assets/images/shoppingCart.svg'
 import { InavbarProps } from '../../interfaces'
 import './style.scss'
-import { useContext, useState } from 'react'
-import { HomeContext } from '../../contexts'
 
 export const Navbar = (props: InavbarProps) => {
-
-    const { setIsOpen } = useContext(HomeContext)
-
-    const OpenModal = () => {
-        setIsOpen(true)
-    }
 
     return (
         <header className='mainNavbar'>
@@ -24,7 +16,7 @@ export const Navbar = (props: InavbarProps) => {
                 <span className="material-symbols-outlined">
                     search
                 </span>
-                <input type="text" placeholder='Busque por um restaurante' />
+                <input onChange={props.search} type="text" placeholder='Busque por um restaurante' />
             </div>) : (<div className="return"><a href="/">
                 <span className="material-symbols-outlined">
                     undo
@@ -35,7 +27,7 @@ export const Navbar = (props: InavbarProps) => {
             <nav>
                 <a href='/requests'><img src={RequestIcon} alt="ir para os pedidos" /></a>
 
-                {props.isHome ? <a onClick={OpenModal}><img src={AddRestaurantIcon} alt="adicionar um restaurante" /></a> : (
+                {props.isHome ? <a onClick={props.modalOpen}><img src={AddRestaurantIcon} alt="adicionar um restaurante" /></a> : (
                     props.isRequest ? null : <a><img src={CartIcon} alt="ir para o carrinho" /></a>
                 )}
             </nav>

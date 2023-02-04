@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
     QueryClient,
     QueryClientProvider,
@@ -34,6 +34,7 @@ function SearchRestaurantInData() {
     const [categoryFilter, setCategoryFilter] = useState('all')
     const [sortFilter, setSortFilter] = useState('all')
     const [filteredRestaurants, setFilteredRestaurants] = useState([])
+    const { search } = useContext(HomeContext)
 
     return (
         <HomeContext.Provider value={{
@@ -44,7 +45,8 @@ function SearchRestaurantInData() {
             filteredRestaurants,
             setFilteredRestaurants,
             data,
-            status
+            status,
+            search
         }}>
             <div className="searchRestaurantContainer">
                 <RestaurantFilters />
