@@ -1,4 +1,3 @@
 import React, { createContext } from "react";
 
-export const HomeFilterContext = createContext(null as React.ComponentState)
-
+export const HomeContext = createContext(null as React.ComponentState)

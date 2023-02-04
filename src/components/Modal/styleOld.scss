@@ -1,0 +1,75 @@
+.modalContainer {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(0, 0, 0, 0.7);
+    z-index: 1000;
+    color: white;
+
+    .modalCard {
+        position: fixed;
+        top: 25%;
+        left: 40%;
+        background-color: var(--secondary-color);
+        min-height: 45vh;
+        min-width: 25vw;
+        color: black;
+        padding: 1vh;
+        border-radius: 5vh;
+
+        .btnExit{            
+            height: 4vh;
+            margin-left: 21vw;
+            margin-top: 1vh;
+            cursor: pointer;
+        }
+
+        .title{
+            text-align: center;
+            padding: 3vh;
+        }
+       
+        label{
+            margin-left: 1vw;
+        }
+        input, textarea{
+            margin-left: 1vw;
+            border-radius: 1vh;
+            outline: none;
+            height: 3vh;
+            border: none;
+        }
+        textarea{
+            height: 8vh;
+        }
+
+        button{
+            margin-left: 10vw;
+            margin-top: 2vh;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 5px;
+            min-height: 4vh;
+            min-width: 7vw;
+            cursor: pointer;
+            border: none;
+        }
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .modalContainer   
+    
+        .modalCard {      
+            left: 20%;
+}
+}
+
+@media screen and (max-width: 350px) {
+    .modalContainer  
+        .modalCard {           
+            left: 5%;  
+}
+}

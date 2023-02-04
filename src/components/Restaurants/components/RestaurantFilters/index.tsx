@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { HomeFilterContext } from '../../../../contexts'
+import { HomeContext } from '../../../../contexts'
 import { IRestaurant, ICards } from '../../../../interfaces/index'
 import './style.scss'
 
@@ -7,13 +7,10 @@ export const RestaurantFilters = () => {
     const [categories, setCategories] = useState<string[]>([])
     const [isGet, setIsGet] = useState(false)
     const {
-        restaurantsToRender,
-        setRestaurantsToRender,
         filteredRestaurants,
         setFilteredRestaurants,
         data,
-        status } = useContext(HomeFilterContext)
-
+        status } = useContext(HomeContext)
     const [render, toRender] = useState(false)
     const [categoryFilter, setCategoryFilter] = useState('all')
     const [sortFilter, setSortFilter] = useState('all')
@@ -35,25 +32,27 @@ export const RestaurantFilters = () => {
         )
     }
 
-    const FilterData = () => {
-        /*  categoryFilter != 'all' ? (
-             setFilteredRestaurants(data.filter((restaurant: IRestaurant) => {
-                 return restaurant.categoria == categoryFilter
-             })
-             )) : null
-         sortFilter != 'all' ? (
-             sortFilter === 'bigger' ? setFilteredRestaurants(data.sort((a: IRestaurant, b: IRestaurant) => {
-                 return a.avaliacao - b.avaliacao
-             })) : setFilteredRestaurants(data.sort((a: IRestaurant, b: IRestaurant) => {
-                 return b.avaliacao - a.avaliacao
-             }))
-         ) : null */
+    const FilterData = (reset?: boolean) => {
+        let array = data
+        if (categoryFilter != 'all') {
+            array = array.filter((restaurant: IRestaurant) => {
+                return restaurant.categoria == categoryFilter
+            })
+            if (!reset) {
+                setFilteredRestaurants(SortData(array, true))
+            }
+        }
+        if (reset) {
+            return array
+        }
+        else {
+            setFilteredRestaurants(array)
+        }
     }
 
-    const SortData = (array: any) => {
+    const SortData = (array: any, filtering?: boolean) => {
         if (sortFilter != 'all') {
             if (sortFilter === 'bigger') {
-
                 return (array.sort((a: IRestaurant, b: IRestaurant) => {
                     return b.avaliacao - a.avaliacao
                 }))
@@ -62,8 +61,11 @@ export const RestaurantFilters = () => {
                     return a.avaliacao - b.avaliacao
                 }))
             }
-        } else {
+        } else if (filtering) {
             return array
+        }
+        else {
+            return FilterData(true)
         }
     }
 
@@ -72,21 +74,18 @@ export const RestaurantFilters = () => {
     }, [status])
 
     useEffect(() => {
-        let array = data
-        if (categoryFilter != 'all') {
-            array = array.filter((restaurant: IRestaurant) => {
-                return restaurant.categoria == categoryFilter
-            })
-            setFilteredRestaurants(SortData(array))
-        } else {
-            setFilteredRestaurants(SortData(array))
+        if (isGet) {
+            FilterData()
         }
     }, [categoryFilter])
 
     useEffect(() => {
-        const array = [...filteredRestaurants]
-        setFilteredRestaurants(SortData(array))
-        toRender(!render)
+        if (isGet) {
+            const array = [...filteredRestaurants]
+            setFilteredRestaurants(SortData(array))
+            toRender(!render)
+        }
+
     }, [sortFilter])
 
     useEffect(() => {
@@ -95,11 +94,6 @@ export const RestaurantFilters = () => {
     useEffect(() => {
         setFilteredRestaurants(data)
     }, [data])
-
-    useEffect(() => {
-        console.log(filteredRestaurants)
-    }, [filteredRestaurants])
-
 
     return (
         <section className="homeFilters">

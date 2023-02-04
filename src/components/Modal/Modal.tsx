@@ -1,81 +1,107 @@
-import "../Modal/style.scss"
+import './style.scss'
 import Vector from "../../assets/images/vector.svg"
 import { IModal } from "../../interfaces"
 import axios from "axios"
 import { useFormik } from "formik"
+import { useContext } from 'react'
+import { HomeContext } from '../../contexts'
 
-const Modal: React.FC<IModal> = (props) => {    
 
+const Modal = () => {
+    const { modalIsOpen, setIsOpen } = useContext(HomeContext)
+    const CloseModal = () => {
+        setIsOpen(false)
+    }
+
+    const overflowHidden = `
+    body {
+        overflow-y: hidden;
+    }
+`
+    const overflowAuto = `
+body {
+    overflow-y: auto;
+}
+`
     const formik = useFormik({
         initialValues: {
             url: '',
             nome: '',
-            categoria: '',            
+            categoria: '',
             sobre: '',
         },
         onSubmit: (values) => {
             axios.post("https://apigenerator.dronahq.com/api/dstqgR3A/restaurantes", values)
         },
         validate: (values) => {
-            const errors: {url?: string, nome?: string, categoria?: string, sobre?: string} = {}
+            const errors: { url?: string, nome?: string, categoria?: string, sobre?: string } = {}
 
-            if(!values.url){
+            if (!values.url) {
                 errors.url = "Campo vazio!"
             }
 
-            if(!values.nome){
+            if (!values.nome) {
                 errors.nome = "Campo vazio!"
             }
 
-            if(!values.categoria){
+            if (!values.categoria) {
                 errors.categoria = "Campo vazio!"
             }
 
-            if(!values.sobre){
+            if (!values.sobre) {
                 errors.sobre = "Campo vazio!"
-            }else if(values.sobre.length > 50){
+            } else if (values.sobre.length > 50) {
                 errors.sobre = "Limite de caracteres ultrapassado!"
             }
-
 
             return errors
 
         }
     })
 
-    if (props.isOpen) {
-        return (
-            <form className="modalContainer" onSubmit={formik.handleSubmit}>
-                <div className="modalCard">
-                    <p><img src={Vector} className="btnExit" /></p>
-                    <h2 className="title">Cadastrar Restaurante</h2>
-                    <label htmlFor="">Nome:</label>
-                    <br></br>
-                    <input type="text" name="nome" onChange={formik.handleChange} value={formik.values.nome}/>
-                    {formik.errors.nome}
-                    <br></br>
-                    <label htmlFor="">Categoria:</label>
-                    <br></br>
-                    <input type="text" name="categoria" onChange={formik.handleChange} value={formik.values.categoria}/>
-                    {formik.errors.categoria}
-                    <br></br>
-                    <label htmlFor="">Url do logo:</label>
-                    <br></br>
-                    <input type="text" name="url" onChange={formik.handleChange} value={formik.values.url}/>
-                    {formik.errors.url}
-                    <br></br>
-                    <label htmlFor="">Sobre:</label>
-                    <br></br>
-                    <textarea name="sobre" onChange={formik.handleChange} value={formik.values.sobre}></textarea>
-                    {formik.errors.sobre}
-                    <br></br> 
-                    <button type="submit">Cadastrar</button>               
-                </div>
-            </form>
-        )
-    }
+    return (
+        <>
+            {modalIsOpen ? (
+                <div className='modalContainer'>
+                    <style>{overflowHidden}</style>
+                    <form onSubmit={formik.handleSubmit}>
+                        <div className="head">
+                            <h2 className="title">Cadastrar Restaurante</h2>
+                            <span onClick={CloseModal}><img src={Vector} className="btnExit" /></span>
 
-    return null
+                        </div>
+
+                        <div className="leftDiv formDiv">
+                            <div className="formItem">
+                                <label htmlFor="">Nome:</label>
+                                <input type="text" name="nome" onChange={formik.handleChange} value={formik.values.nome} />
+                                {formik.errors.nome}
+                            </div>
+                            <div className="formItem">
+                                <label htmlFor="">Categoria:</label>
+                                <input type="text" name="categoria" onChange={formik.handleChange} value={formik.values.categoria} />
+                                {formik.errors.categoria}
+                            </div>
+                            <div className="formItem">
+                                <label htmlFor="">Url do logo:</label>
+                                <input type="text" name="url" onChange={formik.handleChange} value={formik.values.url} />
+                                {formik.errors.url}
+                            </div>
+                        </div>
+
+                        <div className="rightDiv formDiv">
+                            <div className="formItem">
+                                <label htmlFor="">Sobre:</label>
+                                <textarea name="sobre" onChange={formik.handleChange} value={formik.values.sobre}></textarea>
+                                {formik.errors.sobre}
+                            </div>
+
+                            <button type="submit">Cadastrar</button>
+                        </div>
+                    </form>
+                </div>) : <style>{overflowAuto}</style>}
+        </>
+    )
 
 }
 

@@ -8,7 +8,7 @@ import {
 } from "react-query";
 import Cards from "../Cards/Cards"
 import { RestaurantFilters } from "./components/RestaurantFilters";
-import { HomeFilterContext } from "../../contexts";
+import { HomeContext } from "../../contexts";
 
 const qc = new QueryClient()
 
@@ -33,17 +33,14 @@ function SearchRestaurantInData() {
     const { data, status } = useQuery("restaurants", LoadingAPI)
     const [categoryFilter, setCategoryFilter] = useState('all')
     const [sortFilter, setSortFilter] = useState('all')
-    const [restaurantsToRender, setRestaurantsToRender] = useState(data)
     const [filteredRestaurants, setFilteredRestaurants] = useState([])
 
     return (
-        <HomeFilterContext.Provider value={{
+        <HomeContext.Provider value={{
             categoryFilter,
             setCategoryFilter,
             sortFilter,
             setSortFilter,
-            restaurantsToRender,
-            setRestaurantsToRender,
             filteredRestaurants,
             setFilteredRestaurants,
             data,
@@ -53,7 +50,7 @@ function SearchRestaurantInData() {
                 <RestaurantFilters />
                 <Cards data={filteredRestaurants} status={status} />
             </div>
-        </HomeFilterContext.Provider>
+        </HomeContext.Provider>
     )
 }
 
