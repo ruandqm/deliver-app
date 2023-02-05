@@ -1,10 +1,10 @@
 import './style.scss'
 import Vector from "../../assets/images/vector.svg"
-import { IModal } from "../../interfaces"
+import { IModal } from "../../interfaces/interfaces"
 import axios from "axios"
 import { useFormik } from "formik"
 import { useContext } from 'react'
-import { HomeContext } from '../../contexts'
+import { HomeContext } from '../../contexts/contexts'
 
 
 const Modal = () => {
@@ -32,25 +32,11 @@ body {
         },
         onSubmit: (values) => {
             axios.post("https://apigenerator.dronahq.com/api/dstqgR3A/restaurantes", values)
+            alert('Restaurante cadastrado com sucesso!')
         },
         validate: (values) => {
             const errors: { url?: string, nome?: string, categoria?: string, sobre?: string } = {}
-
-            if (!values.url) {
-                errors.url = "Campo vazio!"
-            }
-
-            if (!values.nome) {
-                errors.nome = "Campo vazio!"
-            }
-
-            if (!values.categoria) {
-                errors.categoria = "Campo vazio!"
-            }
-
-            if (!values.sobre) {
-                errors.sobre = "Campo vazio!"
-            } else if (values.sobre.length > 50) {
+            if (values.sobre.length > 50) {
                 errors.sobre = "Limite de caracteres ultrapassado!"
             }
 
@@ -74,17 +60,17 @@ body {
                         <div className="leftDiv formDiv">
                             <div className="formItem">
                                 <label htmlFor="">Nome:</label>
-                                <input type="text" name="nome" onChange={formik.handleChange} value={formik.values.nome} />
+                                <input type="text" name="nome" onChange={formik.handleChange} value={formik.values.nome} required />
                                 {formik.errors.nome}
                             </div>
                             <div className="formItem">
                                 <label htmlFor="">Categoria:</label>
-                                <input type="text" name="categoria" onChange={formik.handleChange} value={formik.values.categoria} />
+                                <input type="text" name="categoria" onChange={formik.handleChange} value={formik.values.categoria} required />
                                 {formik.errors.categoria}
                             </div>
                             <div className="formItem">
                                 <label htmlFor="">Url do logo:</label>
-                                <input type="text" name="url" onChange={formik.handleChange} value={formik.values.url} />
+                                <input type="text" name="url" onChange={formik.handleChange} value={formik.values.url} required />
                                 {formik.errors.url}
                             </div>
                         </div>
@@ -92,7 +78,7 @@ body {
                         <div className="rightDiv formDiv">
                             <div className="formItem">
                                 <label htmlFor="">Sobre:</label>
-                                <textarea name="sobre" onChange={formik.handleChange} value={formik.values.sobre}></textarea>
+                                <textarea name="sobre" onChange={formik.handleChange} value={formik.values.sobre} required></textarea>
                                 {formik.errors.sobre}
                             </div>
 

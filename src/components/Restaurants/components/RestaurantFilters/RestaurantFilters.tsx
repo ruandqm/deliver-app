@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { HomeContext } from '../../../../contexts'
-import { IRestaurant, ICards } from '../../../../interfaces/index'
+import { HomeContext } from '../../../../contexts/contexts'
+import { IRestaurant, ICards } from '../../../../interfaces/interfaces'
 import './style.scss'
 
 export const RestaurantFilters = () => {

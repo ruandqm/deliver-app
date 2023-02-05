@@ -16,6 +16,17 @@ export interface IRestaurant {
     id: number,
 }
 
+export interface IProduct {
+    idRestaurante: number,
+    nome: string,
+    url: string,
+    valor: number,
+    promocao: string,
+    valorPromocional: number,
+    descricao: string,
+    id: number,
+}
+
 export interface ICards {
     data: IRestaurant[],
     status: string
