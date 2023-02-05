@@ -1,8 +1,7 @@
 import Card from "../Card/Card"
 import "./style.scss"
-import { ICards, IRestaurant } from "../../interfaces/index"
+import { ICards, IRestaurant } from "../../interfaces/interfaces"
 import { Loading } from "../Loading/Loading"
-import Modal from "../Modal/Modal"
 
 const RestaurantList: React.FC<ICards> = ({ data, status }) => {
 
@@ -22,8 +21,6 @@ const RestaurantList: React.FC<ICards> = ({ data, status }) => {
             {status === "error" && <div>Error fetching produtos</div>}
             {status === "success" && <section className="cards"> {restaurantCard(data)} </section>}
         </div>
-
-
 
     )
 }

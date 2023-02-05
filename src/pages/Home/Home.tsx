@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import Modal from '../../components/Modal/Modal'
 import { Navbar } from '../../components/Navbar/Navbar'
 import Restaurants from '../../components/Restaurants/Restaurant'
-import { HomeContext } from '../../contexts'
+import { HomeContext } from '../../contexts/contexts'
 
 export const Home = () => {
     const [modalIsOpen, setIsOpen] = useState(false);

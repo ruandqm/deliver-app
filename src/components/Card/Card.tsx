@@ -1,17 +1,19 @@
-import { IRestaurant } from "../../interfaces/index"
+import { IRestaurant } from "../../interfaces/interfaces"
 import "./style.scss"
 import StarIcon from "../../assets/images/star.svg"
-import { useState } from "react"
 
 const Card: React.FC<IRestaurant> = (props) => {
     const redirect = `/restaurant/:${props.id}`
 
     return (
         <a href={redirect} className="cardContainer">
-            <img src={props.url} />
-            <h3 className="propertiesName">{props.nome}</h3>
-            <p> <img src={StarIcon} className="properties" /> {props.avaliacao} - {props.categoria}</p>
-            <p className="propertiesSobre">{props.sobre}</p>
+            <img className="logo" src={props.url} />
+            <div className="details">
+                <h3 className="propertiesName">{props.nome}</h3>
+                <span className="rate"> <img src={StarIcon} className="properties" /> <span>{props.avaliacao}</span> • {props.categoria}</span>
+                <p className="propertiesSobre">{props.sobre}</p>
+            </div>
+
         </a>
     )
 }

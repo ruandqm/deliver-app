@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useContext, useState } from "react";
+import { api } from "../../api/api";
 import {
     QueryClient,
     QueryClientProvider,
@@ -7,18 +8,18 @@ import {
     useQueryClient,
 } from "react-query";
 import Cards from "../Cards/Cards"
-import { RestaurantFilters } from "./components/RestaurantFilters";
-import { HomeContext } from "../../contexts";
+import { RestaurantFilters } from "./components/RestaurantFilters/RestaurantFilters";
+import { HomeContext } from "../../contexts/contexts";
 
 const qc = new QueryClient()
 
-const LoadingAPI = async () => {
+/* const LoadingAPI = async () => {
     const { data } = await axios.get(
         "https://apigenerator.dronahq.com/api/dstqgR3A/restaurantes"
     );
 
     return data
-}
+} */
 
 function Restaurants() {
     return (
@@ -30,7 +31,7 @@ function Restaurants() {
 
 function SearchRestaurantInData() {
     const queryClient = useQueryClient();
-    const { data, status } = useQuery("restaurants", LoadingAPI)
+    const { data, status } = useQuery("restaurants", api.restaurants)
     const [categoryFilter, setCategoryFilter] = useState('all')
     const [sortFilter, setSortFilter] = useState('all')
     const [filteredRestaurants, setFilteredRestaurants] = useState([])

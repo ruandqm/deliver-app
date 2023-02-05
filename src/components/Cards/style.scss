@@ -9,60 +9,14 @@
     }
 
     .cards {
-        display: grid;
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 80vw;
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(4, 25vh);
         margin-left: 10vw;
         margin-right: 10vw;
         gap: 1vw;
-        margin-top: 5vh;        
-    }
-}
-
-@media screen and (max-width: 1345px) {
-    .cardsContainer {
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(3, 35vh);          
-        }
-    }
-}
-
-@media screen and (max-width: 930px) {
-    .cardsContainer {
-        padding: 2vh;
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(1, 1fr);
-            grid-template-rows: repeat(4, 20vh);           
-        }
-    }
-}
-@media screen and (max-width: 700px) {
-    .cardsContainer {
-        padding: 2vh;
-        .cards {
-            display: grid;            
-            grid-template-rows: repeat(4, 30vh);          
-        }
-    }
-}
-@media screen and (max-width: 450px) {
-    .cardsContainer {
-        padding: 2vh;
-        .cards {
-            display: grid;           
-            grid-template-rows: repeat(4, 40vh);          
-        }
-    }
-}
-@media screen and (max-width: 390px) {
-    .cardsContainer {
-        padding: 2vh;
-        .cards {
-            display: grid;
-            grid-template-rows: repeat(4, 60vh);          
-        }
+        margin-top: 5vh;
     }
 }

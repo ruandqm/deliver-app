@@ -1,7 +1,7 @@
 import RequestIcon from '../../assets/images/requests.svg'
 import AddRestaurantIcon from '../../assets/images/addRestaurant.svg'
 import CartIcon from '../../assets/images/shoppingCart.svg'
-import { InavbarProps } from '../../interfaces'
+import { InavbarProps } from '../../interfaces/interfaces'
 import './style.scss'
 
 export const Navbar = (props: InavbarProps) => {
