@@ -2,10 +2,11 @@ import React, { useContext } from 'react'
 import { RestaurantRuanContext } from '../../../../contexts/contexts'
 import CloseIcon from '../../../../assets/images/close.svg'
 import './style.scss'
+import { Product } from './components/Product/Product'
 
 export const Cart = () => {
 
-    const { offCanvas, setOffCanvas } = useContext(RestaurantRuanContext)
+    const { offCanvas, setOffCanvas, actRestaurant } = useContext(RestaurantRuanContext)
 
     const CloseCart = () => {
         setOffCanvas(false)
@@ -13,13 +14,20 @@ export const Cart = () => {
 
     if (offCanvas) {
         return (
-            <div className='cartOffCanvas'>
+            <section className='cartOffCanvas'>
                 <div className="cartContainer">
                     <div className="header">
                         <span className='close' onClick={CloseCart}><img src={CloseIcon} alt="fechar" /></span>
+                        <div className="headerText">
+                            <span>Seu pedido em</span>
+                            <h2>{actRestaurant.nome}</h2>
+                        </div>
+                    </div>
+                    <div className="products">
+                        <Product />
                     </div>
                 </div>
-            </div>
+            </section>
         )
     } else {
         return null
