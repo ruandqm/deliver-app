@@ -1,4 +1,4 @@
-.cardContainer {
+.cardContainerMarcos {
     display: flex;    
     gap: 1rem;
     flex: 1 1 40%;
@@ -8,14 +8,13 @@
     align-items: center;
     border-radius: 20px;
     padding: 1rem 1.2rem;
-    cursor: pointer;
 
-    .logo {
+    .logoMarcos {
         height: 20vh;
         border-radius: 100px;
     }
 
-    .details {
+    .detailsMarcos {
         display: flex;
         flex-direction: column;
 
@@ -36,11 +35,10 @@
             }
         }
     }
-
 }
 
 @media screen and (max-width: 1000px) {
-    .cardContainer {
+    .cardContainerMarcos {
         width: 100%;
         max-width: 100%;
         flex: auto;
@@ -48,7 +46,7 @@
 }
 
 @media screen and (max-width: 600px) {
-    .cardContainer {
+    .cardContainerMarcos {
         display: flex;
         flex-direction: column;
         gap: 0.5rem;

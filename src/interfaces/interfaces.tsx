@@ -33,7 +33,4 @@ export interface ICards {
     status: string
 }
 
-export interface IModal {
-    isOpen: boolean
-}
 
