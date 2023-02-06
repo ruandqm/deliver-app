@@ -15,7 +15,7 @@ const CardProducts: React.FC<IProduct> = (props) => {
                         <span className="promotion">Valor Promocional: R$ {props.valorPromocional}0</span> </div>) :
                         (<div className="values"><span className="value">R$ {props.valor}0</span></div>)}
 
-                    <button onClick={props.OpenModalMarcos} className="btnAddedCart" type="submit">➕  Adicionar ao carrinho</button>
+                    <button className="btnAddedCart" type="submit">➕  Adicionar ao carrinho</button>
 
                 </div>
             </div>

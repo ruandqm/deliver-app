@@ -1,8 +1,15 @@
+.titleRestaurant {
+    background-color: var(--secondary-color);
+    padding-top: 2rem;
+    padding-right: 10vw;
+    padding-left: 10vw;
+}
+
 .container {
     background-color: var(--secondary-color);
     padding: 5vh;
 
-    h1{
+    h1 {
         margin-left: 10vw;
         margin-right: 10vw;
     }
@@ -10,7 +17,7 @@
     .actRestaurant {
         display: flex;
         flex-wrap: wrap;
-        max-width: 80vw;
+        
         margin-left: 10vw;
         margin-right: 10vw;
         gap: 1vw;
@@ -32,33 +39,33 @@
             border-radius: 100px;
         }
 
-        .propertiesDescrition{
+        .propertiesDescrition {
             margin-top: 0.5rem;
         }
 
-        .noPromotion{
+        .noPromotion {
             text-decoration: line-through;
             color: red;
-           
+
         }
-    
-        .promotion{
+
+        .promotion {
             font-size: 1.5rem;
             font-weight: 700;
             color: rgb(0, 255, 64);
             margin-left: 1vw;
-          
+
         }
 
-        .values{
+        .values {
             margin-top: 0.5rem;
         }
 
-        .btnAddedCart{
+        .btnAddedCart {
             margin-top: 0.5rem;
         }
-      
-    }   
+
+    }
 
 }
 

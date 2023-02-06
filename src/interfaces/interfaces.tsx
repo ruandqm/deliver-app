@@ -25,7 +25,6 @@ export interface IProduct {
     valorPromocional: number,
     descricao: string,
     id: number,
-    OpenModalMarcos?: React.MouseEventHandler,
 }
 
 export interface ICards {
