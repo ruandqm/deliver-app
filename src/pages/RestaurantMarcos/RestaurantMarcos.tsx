@@ -42,8 +42,8 @@ export const RestaurantMarcos = () => {
             <Navbar />
             <div className='titleRestaurant'>
                 {restaurant.map((element) => {
-                    return (<Card key={element.id} url={element.url} nome={element.nome} avaliacao={element.avaliacao} 
-                        categoria={element.categoria}></Card>)
+                    return (<Card key={element.id} url={element.url} nome={element.nome} avaliacao={element.avaliacao}
+                    categoria={element.categoria} sobre={element.sobre} id={element.id}></Card>)
                 })}
             </div>
             <div className="container">
