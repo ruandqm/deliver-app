@@ -1,86 +1,93 @@
-.titleRestaurant {
-    background-color: var(--secondary-color);
-    padding-top: 2rem;
-    padding-right: 10vw;
-    padding-left: 10vw;
+.restaurantMarcosContainer {
+    .titleRestaurant {
+        background-color: var(--secondary-color);
+        padding-top: 2rem;
+        padding-right: 10vw;
+        padding-left: 10vw;
+    }
+
+    .container {
+        background-color: var(--secondary-color);
+        padding: 5vh;
+
+        h1 {
+            margin-left: 10vw;
+            margin-right: 10vw;
+        }
+
+        .actRestaurant {
+            display: flex;
+            flex-wrap: wrap;
+
+            margin-left: 10vw;
+            margin-right: 10vw;
+            gap: 1vw;
+            margin-top: 5vh;
+        }
+
+        .cardContainerProducts {
+            display: flex;
+            gap: 1rem;
+            flex: 1 1 40%;
+            background-color: white;
+            align-items: center;
+            border-radius: 20px;
+            padding: 1rem 1.2rem;
+
+
+            .logo {
+                height: 20vh;
+                border-radius: 100px;
+            }
+
+            .propertiesDescrition {
+                margin-top: 0.5rem;
+            }
+
+            .noPromotion {
+                text-decoration: line-through;
+                color: red;
+
+            }
+
+            .promotion {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: rgb(0, 255, 64);
+                margin-left: 1vw;
+
+            }
+
+            .values {
+                margin-top: 0.5rem;
+            }
+
+            .btnAddedCart {
+                margin-top: 0.5rem;
+            }
+
+        }
+
+    }
 }
 
-.container {
-    background-color: var(--secondary-color);
-    padding: 5vh;
-
-    h1 {
-        margin-left: 10vw;
-        margin-right: 10vw;
-    }
-
-    .actRestaurant {
-        display: flex;
-        flex-wrap: wrap;
-        
-        margin-left: 10vw;
-        margin-right: 10vw;
-        gap: 1vw;
-        margin-top: 5vh;
-    }
-
-    .cardContainerProducts {
-        display: flex;
-        gap: 1rem;
-        flex: 1 1 40%;
-        background-color: white;
-        align-items: center;
-        border-radius: 20px;
-        padding: 1rem 1.2rem;
-
-
-        .logo {
-            height: 20vh;
-            border-radius: 100px;
-        }
-
-        .propertiesDescrition {
-            margin-top: 0.5rem;
-        }
-
-        .noPromotion {
-            text-decoration: line-through;
-            color: red;
-
-        }
-
-        .promotion {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: rgb(0, 255, 64);
-            margin-left: 1vw;
-
-        }
-
-        .values {
-            margin-top: 0.5rem;
-        }
-
-        .btnAddedCart {
-            margin-top: 0.5rem;
-        }
-
-    }
-
-}
 
 @media screen and (max-width: 1000px) {
-    .cardContainerProducts {
-        width: 100%;
-        max-width: 100%;
-        flex: auto;
+    .restaurantMarcosContainer {
+        .cardContainerProducts {
+            width: 100%;
+            max-width: 100%;
+            flex: auto;
+        }
     }
 }
 
 @media screen and (max-width: 600px) {
-    .cardContainerProducts {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
+    .restaurantMarcosContainer {
+        .cardContainerProducts {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
     }
 }
