@@ -2,7 +2,7 @@ import { IRestaurant } from "../../../../interfaces/interfaces"
 import "./style.scss"
 import StarIcon from "../../../../assets/images/star.svg"
 
-const Card: React.FC<IRestaurant> = (props) => {
+const Card = (props: any) => {
     const redirect = `/restaurant/:${props.id}`
 
     return (
