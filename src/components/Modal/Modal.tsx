@@ -1,6 +1,5 @@
 import './style.scss'
 import Vector from "../../assets/images/vector.svg"
-import { IModal } from "../../interfaces/interfaces"
 import axios from "axios"
 import { useFormik } from "formik"
 import { useContext } from 'react'

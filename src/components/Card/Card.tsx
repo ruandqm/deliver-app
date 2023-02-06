@@ -13,7 +13,6 @@ const Card: React.FC<IRestaurant> = (props) => {
                 <span className="rate"> <img src={StarIcon} className="properties" /> <span>{props.avaliacao}</span> • {props.categoria}</span>
                 <p className="propertiesSobre">{props.sobre}</p>
             </div>
-
         </a>
     )
 }
