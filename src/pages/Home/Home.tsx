@@ -23,6 +23,5 @@ export const Home = () => {
                 <Modal />
             </div>
         </HomeContext.Provider>
-
     )
 }

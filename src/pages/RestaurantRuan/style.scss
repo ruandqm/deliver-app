@@ -1,5 +1,16 @@
 .restaurantRuanContainer {
     .container {
         background-color: var(--secondary-color);
+        width: 80vw;
+        margin: auto;
+        padding: 1rem;
+    }
+}
+
+@media screen and (max-width: 1330px) {
+    .restaurantRuanContainer {
+        .container {
+            width: 95vw;
+        }
     }
 }
