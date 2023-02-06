@@ -28,7 +28,7 @@ export const Navbar = (props: InavbarProps) => {
                 <a href='/requests'><img src={RequestIcon} alt="ir para os pedidos" /></a>
 
                 {props.isHome ? <a onClick={props.modalOpen}><img src={AddRestaurantIcon} alt="adicionar um restaurante" /></a> : (
-                    props.isRequest ? null : <a><img src={CartIcon} alt="ir para o carrinho" /></a>
+                    props.isRequest ? null : <a onClick={props.cartOffCanvas}><img src={CartIcon} alt="ir para o carrinho" /></a>
                 )}
             </nav>
         </header>

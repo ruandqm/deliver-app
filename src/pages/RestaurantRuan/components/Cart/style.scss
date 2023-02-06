@@ -1,0 +1,44 @@
+.cartOffCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0000006b;
+    animation-duration: 0.5s;
+    animation-name: slidein;
+
+    .cartContainer {
+        position: absolute;
+        right: 0;
+        background-color: var(--text-color);
+        height: 100%;
+        width: 50%;
+
+        .header {
+            .close {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+@keyframes slidein {
+    from {
+        margin-left: 100%;
+        width: 300%
+    }
+
+    to {
+        margin-left: 0%;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .cartOffCanvas {
+        .cartContainer {
+            width: 70%;
+        }
+    }
+}

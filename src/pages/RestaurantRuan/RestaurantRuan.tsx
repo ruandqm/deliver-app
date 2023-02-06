@@ -5,24 +5,45 @@ import { api } from '../../api/api'
 import './style.scss'
 import { IProduct, IRestaurant } from '../../interfaces/interfaces'
 
+import { RestaurantInfos } from './components/RestaurantInfos/RestaurantInfos'
+import { Products } from './components/Products/Products'
+import { RestaurantRuanContext } from '../../contexts/contexts'
+import { Cart } from './components/Cart/Cart'
+
 export const RestaurantRuan = () => {
-    const [restaurants, setRestaurants] = useState<IRestaurant>()
+    const [restaurants, setRestaurants] = useState<IRestaurant[]>()
+    const [actRestaurant, setActRestaurant] = useState<IRestaurant>()
     const [products, setProducts] = useState<IProduct[]>([])
     const [productsToRender, setProductsToRender] = useState<IProduct[]>([])
-    const params = useParams()
+    const [restaurantId, setRestaurantId] = useState<number>()
+    const [offCanvas, setOffCanvas] = useState(false) //controls the offcanvas cart menu
+    const params = useParams() //receive the params of the route
 
     const GetProducts = () => {
-        if (params.id != undefined) {
-            const idRestaurant = parseInt(params.id.slice(1, params.id.length))
-            const actProducts = products.filter((product) => { return (product.idRestaurante == idRestaurant) })
-            setProductsToRender(actProducts)
-        }
+        const actProducts = products.filter((product) => { return (product.idRestaurante == restaurantId) })
+        setProductsToRender(actProducts)
+    }
+    const OpenCart = () => {
+        setOffCanvas(true)
     }
 
     useEffect(() => {
+        if (params.id != undefined) {
+            const idRestaurant = parseInt(params.id.slice(1, params.id.length))
+            setRestaurantId(idRestaurant)
+        }
         api.restaurants().then(res => setRestaurants(res))
         api.products().then(res => setProducts(res))
     }, [])
+
+    useEffect(() => {
+        if (restaurants != undefined) {
+            const restaurant = restaurants.filter((restaurant) => {
+                return restaurant.id == restaurantId
+            })
+            setActRestaurant(restaurant[0])
+        }
+    }, [restaurants])
 
     useEffect(() => {
         GetProducts()
@@ -30,16 +51,19 @@ export const RestaurantRuan = () => {
 
     return (
         <div className='restaurantRuanContainer'>
-            <Navbar />
-            <div className="container">
-                <section className="actRestaurant">
-                    {productsToRender.map((product) => {
-                        return (
-                            <div key={product.id}>{product.nome}</div>
-                        )
-                    })}
-                </section>
-            </div>
+            <RestaurantRuanContext.Provider value={{
+                actRestaurant,
+                productsToRender,
+                offCanvas,
+                setOffCanvas
+            }}>
+                <Navbar cartOffCanvas={OpenCart} />
+                <div className="container">
+                    <RestaurantInfos />
+                    <Products />
+                    <Cart />
+                </div>
+            </RestaurantRuanContext.Provider>
         </div>
     )
 }
