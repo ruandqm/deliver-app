@@ -1,0 +1,20 @@
+.cartProductContainer {
+    background-color: var(--text-color);
+    padding: 1rem;
+
+    .product {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .remove {
+        display: flex;
+        justify-content: end;
+
+        span {
+            color: red;
+            cursor: pointer;
+            font-weight: 600;
+        }
+    }
+}

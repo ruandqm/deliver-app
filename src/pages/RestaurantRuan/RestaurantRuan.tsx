@@ -13,10 +13,15 @@ import { Cart } from './components/Cart/Cart'
 export const RestaurantRuan = () => {
     const [restaurants, setRestaurants] = useState<IRestaurant[]>()
     const [actRestaurant, setActRestaurant] = useState<IRestaurant>()
+
     const [products, setProducts] = useState<IProduct[]>([])
     const [productsToRender, setProductsToRender] = useState<IProduct[]>([])
+
     const [restaurantId, setRestaurantId] = useState<number>()
     const [offCanvas, setOffCanvas] = useState(false) //controls the offcanvas cart menu
+
+    const [request, setRequest] = useState<object>({})
+
     const params = useParams() //receive the params of the route
 
     const GetProducts = () => {
@@ -36,7 +41,7 @@ export const RestaurantRuan = () => {
         api.products().then(res => setProducts(res))
     }, [])
 
-    useEffect(() => {
+    useEffect(() => { //identifies the clicked restaurant based on route params
         if (restaurants != undefined) {
             const restaurant = restaurants.filter((restaurant) => {
                 return restaurant.id == restaurantId
@@ -55,7 +60,9 @@ export const RestaurantRuan = () => {
                 actRestaurant,
                 productsToRender,
                 offCanvas,
-                setOffCanvas
+                setOffCanvas,
+                request,
+                setRequest
             }}>
                 <Navbar cartOffCanvas={OpenCart} />
                 <div className="container">
