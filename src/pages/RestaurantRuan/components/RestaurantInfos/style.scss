@@ -1,0 +1,25 @@
+.restaurantInfosContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--text-color);
+    padding: 0.5rem 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.4rem 1rem grey;
+
+    .rate {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .restaurantInfosContainer {
+        justify-content: center;
+        text-align: center;
+        gap: 1rem;
+    }
+}

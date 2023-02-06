@@ -4,6 +4,7 @@ export interface InavbarProps {
     isHome?: boolean,
     isRequest?: boolean
     modalOpen?: React.MouseEventHandler,
+    cartOffCanvas?: React.MouseEventHandler,
     search?: React.ChangeEventHandler,
 }
 
