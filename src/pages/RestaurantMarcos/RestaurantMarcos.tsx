@@ -3,54 +3,67 @@ import { Navbar } from '../../components/Navbar/Navbar'
 import { useParams } from 'react-router-dom'
 import { api } from '../../api/api'
 import { IProduct, IRestaurant } from '../../interfaces/interfaces'
-import CardProducts from "./Components/CardMarcos/Card"
+import CardProducts from './Components/CardMarcos/CardProducts'
 import "./style.scss"
-import Card from './Components/CardMarcos/Card'
+import Card from './Components/CardMarcos/CardRestaurant'
 import { RestaurantMarcosContext } from '../../contexts/contexts'
+import { ModalMarcos } from './Components/Modal/ModalMarcos'
 
 export const RestaurantMarcos = () => {
-    const [restaurants, setRestaurants] = useState<IRestaurant[]>([])
-    const [restaurant, setRestaurant] = useState<IRestaurant[]>([])
+    const [restaurants, setRestaurants] = useState<IRestaurant[]>()
+    const [actRestaurant, setActRestaurant] = useState<IRestaurant>()
+
     const [products, setProducts] = useState<IProduct[]>([])
     const [productsToRender, setProductsToRender] = useState<IProduct[]>([])
-    const params = useParams()
-    const [openModalMarcos, setModalMarcos] = useState(false)
+
+    const [restaurantId, setRestaurantId] = useState<number>()
+    const [openModalMarcos, setModalMarcos] = useState(false) //controls the offcanvas cart menu
+
+    const params = useParams() //receive the params of the route
 
     const GetProducts = () => {
-        if (params.id != undefined) {
-            const idRestaurant = parseInt(params.id.slice(1, params.id.length))
-            const actProducts = products.filter((product) => { return (product.idRestaurante == idRestaurant) })
-            setProductsToRender(actProducts)
-
-            const actRestaurant = restaurants.filter((element) => { return (element.id === idRestaurant) })
-            setRestaurant(actRestaurant)
-        }
+        const actProducts = products.filter((product) => { return (product.idRestaurante == restaurantId) })
+        setProductsToRender(actProducts)
+    }
+    const openModalCart = () => {
+        setModalMarcos(true)
     }
 
     useEffect(() => {
+        if (params.id != undefined) {
+            const idRestaurant = parseInt(params.id.slice(1, params.id.length))
+            setRestaurantId(idRestaurant)
+        }
         api.restaurants().then(res => setRestaurants(res))
         api.products().then(res => setProducts(res))
     }, [])
+
+    useEffect(() => { //identifies the clicked restaurant based on route params
+        if (restaurants != undefined) {
+            const restaurant = restaurants.filter((restaurant) => {
+                return restaurant.id == restaurantId
+            })
+            setActRestaurant(restaurant[0])
+        }
+    }, [restaurants])
 
     useEffect(() => {
         GetProducts()
     }, [products])
 
-
     return (
         <div className='restaurantMarcosContainer'>
-            <Navbar />
-            <div className='titleRestaurant'>
-                {restaurant.map((element) => {
-                    return (<Card key={element.id} url={element.url} nome={element.nome} avaliacao={element.avaliacao}
-                        categoria={element.categoria} sobre={element.sobre} id={element.id}></Card>)
-                })}
-            </div>
-            <div className="container">
-                <RestaurantMarcosContext.Provider value={{
-                    openModalMarcos,
-                    setModalMarcos
-                }}>
+            <RestaurantMarcosContext.Provider value={{
+                actRestaurant,
+                productsToRender,   
+                openModalMarcos,
+                setModalMarcos,         
+            }}>
+                <Navbar cartOffCanvas={openModalCart}/>
+                <div className='titleRestaurant'>
+                    <Card />
+                </div>
+                <div className="container">
                     <h1 className='title'>Produtos</h1>
                     <section className="actRestaurant">
                         {productsToRender.map((product) => {
@@ -60,9 +73,10 @@ export const RestaurantMarcos = () => {
                                     descricao={product.descricao} id={product.id}></CardProducts>
                             )
                         })}
-                    </section>
-                </RestaurantMarcosContext.Provider>
-            </div>
+                    </section> 
+                </div>
+                <ModalMarcos/>
+            </RestaurantMarcosContext.Provider>
         </div>
     )
 }
