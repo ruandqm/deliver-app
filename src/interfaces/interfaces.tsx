@@ -33,4 +33,9 @@ export interface ICards {
     status: string
 }
 
+export interface ICartProduct {
+    productId: number,
+    count: number
+}
+
 

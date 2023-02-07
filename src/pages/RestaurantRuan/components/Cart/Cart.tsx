@@ -1,16 +1,23 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { RestaurantRuanContext } from '../../../../contexts/contexts'
 import CloseIcon from '../../../../assets/images/close.svg'
 import './style.scss'
 import { Product } from './components/Product/Product'
+import { ICartProduct, IProduct } from '../../../../interfaces/interfaces'
 
 export const Cart = () => {
 
-    const { offCanvas, setOffCanvas, actRestaurant } = useContext(RestaurantRuanContext)
+    const { offCanvas, setOffCanvas, actRestaurant, productsToRender, request } = useContext(RestaurantRuanContext)
+
+    const [cartProducts, setCartProducts] = useState([])
 
     const CloseCart = () => {
         setOffCanvas(false)
     }
+
+    useEffect(() => {
+        setCartProducts(request)
+    }, [request])
 
     if (offCanvas) {
         return (
@@ -24,7 +31,10 @@ export const Cart = () => {
                         </div>
                     </div>
                     <div className="products">
-                        <Product />
+                        {cartProducts.map((product: ICartProduct) => {
+                            return <Product key={product.productId} productId={product.productId} count={product.count} />
+                        })}
+
                     </div>
                 </div>
             </section>
