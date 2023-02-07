@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { RestaurantRuanContext } from '../../../../contexts/contexts'
-import { IProduct } from '../../../../interfaces/interfaces'
+import { ICartProduct, IProduct } from '../../../../interfaces/interfaces'
 import './style.scss'
 
 interface IProps {
@@ -9,19 +9,35 @@ interface IProps {
 
 export const ProductCard = (props: IProps) => {
     const [count, setCount] = useState(0)
-    const { request, setRequest } = useContext(RestaurantRuanContext)
+    const { request, setRequest, actRestaurant } = useContext(RestaurantRuanContext)
 
     const AddProduct = () => {
         const newRequest = request
-        newRequest[props.data.id] = count
+        const productId = props.data.id
+
+        if (newRequest.length != 0) {
+            newRequest.map((req: ICartProduct) => {
+                if (newRequest.find((obj: ICartProduct) => {
+                    if (obj.productId == productId) {
+                        obj.count = count
+                        return true
+                    }
+                    return false
+                })) {
+                } else {
+                    newRequest.push({ productId, count })
+                }
+            })
+        } else {
+            newRequest.push({ productId, count })
+        }
         setRequest(newRequest)
-        console.log(newRequest)
+        window.localStorage.setItem(JSON.stringify(actRestaurant.id), JSON.stringify(newRequest))
     }
 
     useEffect(() => {
         count != 0 ? AddProduct() : null
     }, [count])
-
 
     return (
         <article className='productCardContainer'>
