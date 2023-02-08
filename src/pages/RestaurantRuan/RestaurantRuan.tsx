@@ -3,7 +3,7 @@ import { Navbar } from '../../components/Navbar/Navbar'
 import { useParams } from 'react-router-dom'
 import { api } from '../../api/api'
 import './style.scss'
-import { ICartProduct, IProduct, IRestaurant } from '../../interfaces/interfaces'
+import { ICartProduct, IProduct, IProductRequest, IRestaurant } from '../../interfaces/interfaces'
 
 import { RestaurantInfos } from './components/RestaurantInfos/RestaurantInfos'
 import { Products } from './components/Products/Products'
@@ -20,7 +20,7 @@ export const RestaurantRuan = () => {
     const [restaurantId, setRestaurantId] = useState<number>()
     const [offCanvas, setOffCanvas] = useState(false) //controls the offcanvas cart menu
 
-    const [request, setRequest] = useState<ICartProduct[]>([])
+    const [request, setRequest] = useState<IProductRequest[]>([])
     const [productCountAltered, setProductCountAltered] = useState(false) //control's var to force render the changes in the count
     const [totalRequestValue, setTotalRequestValue] = useState(0)
 

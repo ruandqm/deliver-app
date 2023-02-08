@@ -24,10 +24,17 @@ export const Product = (props: ICartProduct) => {
         setProductInfo(productMatch)
     }
 
-    const TotalRequestValueHandler = (add: boolean) => {
+    const TotalRequestValueHandler = () => {
         if (productInfo != undefined) {
             {
                 if (productInfo.promocao === 'true') {
+                    const promoValue = parseFloat((productInfo.valorPromocional).toFixed(2))
+                    setTotalValue(promoValue * productCount)
+                } else {
+                    const normalValue = parseFloat((productInfo.valor).toFixed(2))
+                    setTotalValue(normalValue * productCount)
+                }
+                /* if (productInfo.promocao === 'true') {
                     const promoValue = parseFloat((productInfo.valorPromocional).toFixed(2))
                     setTotalValue(promoValue * productCount)
                     if (add) {
@@ -39,16 +46,46 @@ export const Product = (props: ICartProduct) => {
                     const normalValue = parseFloat((productInfo.valor).toFixed(2))
                     setTotalValue(normalValue * productCount)
                     if (add) {
-                        const total = totalRequestValue + normalValue
+                        console.log('add')
                         setTotalRequestValue((totalRequestValue: number) => totalRequestValue + normalValue)
                     } else {
                         setTotalRequestValue((totalRequestValue: number) => totalRequestValue - normalValue)
                     }
-
-                }
+                } */
             }
         }
     }
+    /*  const TotalRequestValueHandler = (add: boolean) => {
+         if (productInfo !== undefined) {
+             if (productInfo.promocao === 'true') {
+                 const promoValue = parseFloat((productInfo.valorPromocional).toFixed(2));
+                 setTotalValue(promoValue * productCount);
+                 if (add) {
+                     setTotalRequestValue((prevValue: number) =>
+                         prevValue !== undefined ? prevValue + promoValue : promoValue
+                     );
+                 } else {
+                     setTotalRequestValue((prevValue: number) =>
+                         prevValue !== undefined ? prevValue - promoValue : -promoValue
+                     );
+                 }
+             } else {
+                 const normalValue = parseFloat((productInfo.valor).toFixed(2));
+                 setTotalValue(normalValue * productCount);
+                 if (add) {
+                     setTotalRequestValue((prevValue: number) =>
+                         prevValue !== undefined ? prevValue + normalValue : normalValue
+                     );
+                 } else {
+                     setTotalRequestValue((prevValue: number) =>
+                         prevValue !== undefined ? prevValue - normalValue : -normalValue
+                     );
+                 }
+             }
+         }
+     } */
+
+
 
     const RemoveProduct = () => {
         if (request.find((obj: ICartProduct, index: number) => {
@@ -66,8 +103,15 @@ export const Product = (props: ICartProduct) => {
             }
             return false
         })) {
-            TotalRequestValueHandler(false)
         }
+        if (productInfo != undefined) {
+            if (productInfo.promocao === 'true') {
+                setTotalRequestValue((totalRequestValue: number) => totalRequestValue - productInfo.valorPromocional)
+            } else {
+                setTotalRequestValue((totalRequestValue: number) => totalRequestValue - productInfo.valor)
+            }
+        }
+
     }
 
 
@@ -77,10 +121,10 @@ export const Product = (props: ICartProduct) => {
 
     useEffect(() => {
         setProductCount(props.count)
-    }, [props.count])
+    }, [request])
 
     useEffect(() => {
-        TotalRequestValueHandler(true)
+        TotalRequestValueHandler()
     }, [productCount])
 
 
@@ -90,7 +134,7 @@ export const Product = (props: ICartProduct) => {
                 <h3>{productCount}x {productInfo?.nome}</h3>
                 {productInfo &&
                     <h3>
-                        R$ {totalValue}
+                        R$ {totalValue?.toFixed(2)}
                     </h3>
                 }
             </div>

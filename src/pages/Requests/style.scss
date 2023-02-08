@@ -9,6 +9,7 @@
         .requests {
             display: flex;
             flex-wrap: wrap;
+            gap: 1rem;
 
             .request {
                 background-color: var(--text-color);

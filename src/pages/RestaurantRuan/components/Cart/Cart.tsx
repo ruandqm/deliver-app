@@ -1,12 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { RestaurantRuanContext } from '../../../../contexts/contexts'
 import CloseIcon from '../../../../assets/images/close.svg'
 import './style.scss'
 import { Product } from './components/Product/Product'
 import { ICartProduct, IProduct } from '../../../../interfaces/interfaces'
+import axios from 'axios'
 
 export const Cart = () => {
-
+    const offCanvasRef = useRef(null)
     const {
         offCanvas,
         setOffCanvas,
@@ -19,9 +20,19 @@ export const Cart = () => {
         setOffCanvas(false)
     }
 
+    const RegistRequest = () => {
+        const requestValues = {
+            "restaurantLogo": actRestaurant.url,
+            "restaurantName": actRestaurant.nome,
+            "products": request
+        }
+        axios.post('https://apigenerator.dronahq.com/api/9x07oRHk/deliveryRequests', requestValues)
+        alert('Pedido registrado com sucesso!')
+    }
+
     if (offCanvas) {
         return (
-            <section className='cartOffCanvas'>
+            <section className='cartOffCanvas' ref={offCanvasRef}>
                 <div className="cartContainer">
                     <div className="header">
                         <span className='close' onClick={CloseCart}><img src={CloseIcon} alt="fechar" /></span>
@@ -38,7 +49,7 @@ export const Cart = () => {
 
                     </div>
                     <h3>Total: R$ {totalRequestValue.toFixed(2)}</h3>
-                    <button className='finishRequest'>Finalizar Pedido</button>
+                    <button onClick={RegistRequest} className='finishRequest'>Finalizar Pedido</button>
                 </div>
             </section>
         )
