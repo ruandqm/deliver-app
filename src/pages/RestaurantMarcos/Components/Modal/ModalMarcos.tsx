@@ -2,7 +2,6 @@ import React, { useContext } from 'react'
 import { RestaurantMarcosContext } from '../../../../contexts/contexts'
 import VectorExit from "../../../../assets/images/VectorExit.svg"
 import "./style.scss"
-import { Products } from './Products/Products'
 
 export const ModalMarcos = () => {
 
