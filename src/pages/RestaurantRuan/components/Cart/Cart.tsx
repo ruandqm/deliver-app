@@ -33,7 +33,7 @@ export const Cart = () => {
     if (offCanvas) {
         return (
             <section className='cartOffCanvas' ref={offCanvasRef}>
-                <div className="cartContainer">
+                <div className="requestCartContainer">
                     <div className="header">
                         <span className='close' onClick={CloseCart}><img src={CloseIcon} alt="fechar" /></span>
                         <div className="headerText">
