@@ -21,6 +21,8 @@ export const RestaurantRuan = () => {
     const [offCanvas, setOffCanvas] = useState(false) //controls the offcanvas cart menu
 
     const [request, setRequest] = useState<ICartProduct[]>([])
+    const [productCountAltered, setProductCountAltered] = useState(false) //control's var to force render the changes in the count
+    const [totalRequestValue, setTotalRequestValue] = useState(0)
 
     const params = useParams() //receive the params of the route
 
@@ -54,6 +56,13 @@ export const RestaurantRuan = () => {
         GetProducts()
     }, [products])
 
+    useEffect(() => {
+        if (actRestaurant != undefined) {
+            const localCount = window.localStorage.getItem(String(actRestaurant.id))
+            localCount != null ? setRequest(JSON.parse(localCount)) : null
+        }
+    }, [actRestaurant])
+
     return (
         <div className='restaurantRuanContainer'>
             <RestaurantRuanContext.Provider value={{
@@ -62,7 +71,11 @@ export const RestaurantRuan = () => {
                 offCanvas,
                 setOffCanvas,
                 request,
-                setRequest
+                setRequest,
+                productCountAltered,
+                setProductCountAltered,
+                totalRequestValue,
+                setTotalRequestValue
             }}>
                 <Navbar cartOffCanvas={OpenCart} />
                 <div className="container">

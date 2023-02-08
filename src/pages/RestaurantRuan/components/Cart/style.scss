@@ -31,6 +31,17 @@
                 }
             }
         }
+
+        .finishRequest {
+            color: var(--text-color);
+            background-color: var(--red);
+            padding: 0.8rem;
+            border: none;
+            width: 80%;
+            margin: auto;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
     }
 }
 
