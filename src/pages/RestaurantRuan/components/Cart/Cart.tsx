@@ -7,17 +7,17 @@ import { ICartProduct, IProduct } from '../../../../interfaces/interfaces'
 
 export const Cart = () => {
 
-    const { offCanvas, setOffCanvas, actRestaurant, productsToRender, request } = useContext(RestaurantRuanContext)
-
-    const [cartProducts, setCartProducts] = useState([])
+    const {
+        offCanvas,
+        setOffCanvas,
+        actRestaurant,
+        productsToRender,
+        request,
+        totalRequestValue } = useContext(RestaurantRuanContext)
 
     const CloseCart = () => {
         setOffCanvas(false)
     }
-
-    useEffect(() => {
-        setCartProducts(request)
-    }, [request])
 
     if (offCanvas) {
         return (
@@ -31,11 +31,14 @@ export const Cart = () => {
                         </div>
                     </div>
                     <div className="products">
-                        {cartProducts.map((product: ICartProduct) => {
-                            return <Product key={product.productId} productId={product.productId} count={product.count} />
+                        {request.map((product: ICartProduct) => {
+                            return <Product
+                                key={product.productId} productId={product.productId} count={product.count} />
                         })}
 
                     </div>
+                    <h3>Total: R$ {totalRequestValue.toFixed(2)}</h3>
+                    <button className='finishRequest'>Finalizar Pedido</button>
                 </div>
             </section>
         )

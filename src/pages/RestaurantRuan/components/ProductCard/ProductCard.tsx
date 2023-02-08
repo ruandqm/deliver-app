@@ -9,14 +9,19 @@ interface IProps {
 
 export const ProductCard = (props: IProps) => {
     const [count, setCount] = useState(0)
-    const { request, setRequest, actRestaurant } = useContext(RestaurantRuanContext)
+    const {
+        request,
+        setRequest,
+        actRestaurant,
+        productCountAltered,
+        setProductCountAltered } = useContext(RestaurantRuanContext)
 
     const AddProduct = () => {
         const newRequest = request
         const productId = props.data.id
 
         if (newRequest.length != 0) {
-            newRequest.map((req: ICartProduct) => {
+            newRequest.map(() => {
                 if (newRequest.find((obj: ICartProduct) => {
                     if (obj.productId == productId) {
                         obj.count = count
@@ -35,9 +40,27 @@ export const ProductCard = (props: IProps) => {
         window.localStorage.setItem(JSON.stringify(actRestaurant.id), JSON.stringify(newRequest))
     }
 
+    const GetProductCount = () => {
+        if (!request.find((obj: ICartProduct) => {
+            if (obj.productId == props.data.id) {
+                setCount(obj.count)
+                return true
+            }
+            return false
+        })) { setCount(0) }
+    }
+    useEffect(() => {
+        //  console.log(request)
+        GetProductCount()
+    }, [productCountAltered])
+
     useEffect(() => {
         count != 0 ? AddProduct() : null
     }, [count])
+
+    useEffect(() => {
+        GetProductCount()
+    }, [request])
 
     return (
         <article className='productCardContainer'>
