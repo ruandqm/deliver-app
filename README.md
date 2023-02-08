@@ -17,3 +17,5 @@ The project consists of 4 pages in all, two of them developed together (Home and
 - The first restaurant to be rendered will redirect to the page built by Marcos, the others will redirect to the page built by Ruan.
 
 ⚠️ Maybe not all functionality is working but we will work on it
+
+> This project is avaliable on "https://deliver-app-black.vercel.app"
