@@ -10,8 +10,8 @@ export const api = {
         const response = await axios.get('https://apigenerator.dronahq.com/api/3yNrDssc/produtos')
         return response.data
     },
-    requests: {
-        link: 'https://apigenerator.dronahq.com/api/9x07oRHk/deliveryRequests',
+    productsMarcos: async function () {
+        const response = await axios.get('https://apigenerator.dronahq.com/api/BmvkKnV9/requestsProducts')
+        return response.data
     }
-
 }

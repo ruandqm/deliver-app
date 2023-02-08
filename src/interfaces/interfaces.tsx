@@ -39,6 +39,14 @@ export interface ICartProduct {
     totalValue?: number,
 }
 
+export interface ICartProductMarcos {
+    productId: number,
+    counter?: number,
+    value?: number,
+    descricion: string,
+}
+
+
 export interface IProductRequest {
     productId: number,
     count: number,
