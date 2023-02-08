@@ -14,5 +14,4 @@ export const api = {
         const response = await axios.get('https://apigenerator.dronahq.com/api/BmvkKnV9/requestsProducts')
         return response.data
     }
-    
 }

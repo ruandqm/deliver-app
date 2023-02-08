@@ -35,7 +35,8 @@ export interface ICards {
 
 export interface ICartProduct {
     productId: number,
-    count: number
+    count: number,
+    totalValue?: number,
 }
 
 export interface ICartProductMarcos {
@@ -46,4 +47,14 @@ export interface ICartProductMarcos {
 }
 
 
+export interface IProductRequest {
+    productId: number,
+    count: number,
+    productName: string
+}
 
+export interface IRequest {
+    restaurantLogo?: string,
+    restaurantName?: string,
+    products?: IProductRequest[]
+}
