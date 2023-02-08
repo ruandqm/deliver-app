@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Navbar } from '../../components/Navbar/Navbar'
 import { useParams } from 'react-router-dom'
 import { api } from '../../api/api'
-import { IProduct, IRestaurant } from '../../interfaces/interfaces'
+import { ICartProduct, IProduct, IRestaurant } from '../../interfaces/interfaces'
 import CardProducts from './Components/CardMarcos/CardProducts'
 import "./style.scss"
 import Card from './Components/CardMarcos/CardRestaurant'
@@ -17,9 +17,11 @@ export const RestaurantMarcos = () => {
     const [productsToRender, setProductsToRender] = useState<IProduct[]>([])
 
     const [restaurantId, setRestaurantId] = useState<number>()
-    const [openModalMarcos, setModalMarcos] = useState(false) //controls the offcanvas cart menu
+    const [openModalMarcos, setModalMarcos] = useState(false)
 
-    const params = useParams() //receive the params of the route
+    const [request, setRequest] = useState<ICartProduct[]>()
+
+    const params = useParams()
 
     const GetProducts = () => {
         const actProducts = products.filter((product) => { return (product.idRestaurante == restaurantId) })
@@ -38,7 +40,7 @@ export const RestaurantMarcos = () => {
         api.products().then(res => setProducts(res))
     }, [])
 
-    useEffect(() => { //identifies the clicked restaurant based on route params
+    useEffect(() => {
         if (restaurants != undefined) {
             const restaurant = restaurants.filter((restaurant) => {
                 return restaurant.id == restaurantId
@@ -57,7 +59,9 @@ export const RestaurantMarcos = () => {
                 actRestaurant,
                 productsToRender,   
                 openModalMarcos,
-                setModalMarcos,         
+                setModalMarcos,
+                request,
+                setRequest,  
             }}>
                 <Navbar cartOffCanvas={openModalCart}/>
                 <div className='titleRestaurant'>
@@ -65,7 +69,8 @@ export const RestaurantMarcos = () => {
                 </div>
                 <div className="container">
                     <h1 className='title'>Produtos</h1>
-                    <section className="actRestaurant">
+                    <section className="actRestaurant">  
+                                       
                         {productsToRender.map((product) => {
                             return (
                                 <CardProducts key={product.id} url={product.url} nome={product.nome} valor={product.valor}

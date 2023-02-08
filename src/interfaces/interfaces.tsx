@@ -38,4 +38,12 @@ export interface ICartProduct {
     count: number
 }
 
+export interface ICartProductMarcos {
+    productId: number,
+    counter?: number,
+    value?: number,
+    descricion: string,
+}
+
+
 

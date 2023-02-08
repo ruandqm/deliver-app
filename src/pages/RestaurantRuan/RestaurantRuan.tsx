@@ -18,11 +18,11 @@ export const RestaurantRuan = () => {
     const [productsToRender, setProductsToRender] = useState<IProduct[]>([])
 
     const [restaurantId, setRestaurantId] = useState<number>()
-    const [offCanvas, setOffCanvas] = useState(false) //controls the offcanvas cart menu
+    const [offCanvas, setOffCanvas] = useState(false)
 
     const [request, setRequest] = useState<ICartProduct[]>([])
 
-    const params = useParams() //receive the params of the route
+    const params = useParams()
 
     const GetProducts = () => {
         const actProducts = products.filter((product) => { return (product.idRestaurante == restaurantId) })
@@ -41,7 +41,7 @@ export const RestaurantRuan = () => {
         api.products().then(res => setProducts(res))
     }, [])
 
-    useEffect(() => { //identifies the clicked restaurant based on route params
+    useEffect(() => {
         if (restaurants != undefined) {
             const restaurant = restaurants.filter((restaurant) => {
                 return restaurant.id == restaurantId
