@@ -36,7 +36,7 @@ export const Requests = () => {
                                     {req.products?.map((product: IProductRequest) => {
                                         return (
                                             <div className="product">
-                                                <h3>{product.productCount}</h3>
+                                                <h3>{product.count}</h3>
                                                 <h3>{product.productName}</h3>
                                             </div>
                                         )

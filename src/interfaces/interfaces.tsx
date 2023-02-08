@@ -40,8 +40,9 @@ export interface ICartProduct {
 }
 
 export interface IProductRequest {
-    productName: string,
-    productCount: number
+    productId: number,
+    count: number,
+    productName: string
 }
 
 export interface IRequest {

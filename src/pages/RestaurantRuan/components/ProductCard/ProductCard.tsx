@@ -9,15 +9,25 @@ interface IProps {
 
 export const ProductCard = (props: IProps) => {
     const [count, setCount] = useState(0)
+    const [addingProduct, setAddingProduct] = useState(false)
     const {
         request,
         setRequest,
         actRestaurant,
         productCountAltered,
-        setProductCountAltered } = useContext(RestaurantRuanContext)
+        setProductCountAltered,
+        totalRequestValue,
+        setTotalRequestValue } = useContext(RestaurantRuanContext)
 
     const AddProduct = () => {
+        if (props.data.promocao === 'true') {
+            setTotalRequestValue((totalRequestValue: number) => totalRequestValue + props.data.valorPromocional)
+        } else {
+            setTotalRequestValue((totalRequestValue: number) => totalRequestValue + props.data.valor)
+        }
+
         const newRequest = request
+        const productName = props.data.nome
         const productId = props.data.id
 
         if (newRequest.length != 0) {
@@ -30,14 +40,16 @@ export const ProductCard = (props: IProps) => {
                     return false
                 })) {
                 } else {
-                    newRequest.push({ productId, count })
+                    newRequest.push({ productId, count, productName })
                 }
             })
         } else {
-            newRequest.push({ productId, count })
+            newRequest.push({ productId, count, productName })
         }
         setRequest(newRequest)
         window.localStorage.setItem(JSON.stringify(actRestaurant.id), JSON.stringify(newRequest))
+
+        setAddingProduct(false)
     }
 
     const GetProductCount = () => {
@@ -55,7 +67,7 @@ export const ProductCard = (props: IProps) => {
     }, [productCountAltered])
 
     useEffect(() => {
-        count != 0 ? AddProduct() : null
+        count != 0 && addingProduct ? AddProduct() : null
     }, [count])
 
     useEffect(() => {
@@ -70,9 +82,13 @@ export const ProductCard = (props: IProps) => {
                 <div className="values">
                     <h3>{props.data.promocao == 'true' ? `R$ ${props.data.valorPromocional}` : `R$ ${props.data.valor}`}</h3>
                     <s>{props.data.promocao == 'true' ? `R$ ${props.data.valor}` : null}</s>
-                    <button onClick={() => setCount((count) => count + 1)}><span className="material-symbols-outlined">
-                        add_circle
-                    </span>{count}</button>
+                    <button onClick={() => {
+                        setAddingProduct(true)
+                        setCount((count) => count + 1)
+                    }}>
+                        <span className="material-symbols-outlined">
+                            add_circle
+                        </span>{count}</button>
                 </div>
             </div>
             <img src={props.data.url} alt="imagem do produto" />
