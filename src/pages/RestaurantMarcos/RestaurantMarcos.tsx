@@ -74,8 +74,8 @@ export const RestaurantMarcos = () => {
                         {productsToRender.map((product) => {
                             return (
                                 <CardProducts key={product.id} url={product.url} nome={product.nome} valor={product.valor}
-                                    idRestaurante={product.idRestaurante} promocao={product.promocao} valorPromocional={product.valorPromocional}
-                                    descricao={product.descricao} id={product.id}></CardProducts>
+                                idRestaurante={product.idRestaurante} promocao={product.promocao} valorPromocional={product.valorPromocional}
+                                descricao={product.descricao} id={product.id} productId={0} descricion={''}></CardProducts>
                             )
                         })}
                     </section> 
