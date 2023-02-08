@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { RestaurantMarcosContext } from '../../../../contexts/contexts'
-import VectorExit from "../../../../assets/images/VectorExit.svg"
+import VectorExit from "../../../../assets/images/vectorExit.svg"
 import "./style.scss"
 
 export const ModalMarcos = () => {
@@ -14,8 +14,8 @@ export const ModalMarcos = () => {
     return (
 
       <section className='cartContainer'>
-        
-        <div className='cart'>        
+
+        <div className='cart'>
           <span onClick={closeModal}><img className='close' src={VectorExit} alt="Button Exit" />Seu pedido em</span>
 
           <h3>Restaurante ➖ {actRestaurant?.nome}</h3>
