@@ -24,9 +24,9 @@ export const Requests = () => {
             <section className="myRequests">
                 <h2 className="title">Meus Pedidos</h2>
                 <div className="requests">
-                    {requests && requests.map((req) => {
+                    {requests && requests.map((req, index) => {
                         return (
-                            <article className="request">
+                            <article key={index} className="request">
                                 <div className="restaurantInfos">
                                     <img src={req.restaurantLogo} alt="logo do restaurante" />
                                     <h3>{req.restaurantName}</h3>
@@ -35,7 +35,7 @@ export const Requests = () => {
                                 <div className="products">
                                     {req.products?.map((product: IProductRequest) => {
                                         return (
-                                            <div className="product">
+                                            <div key={product.productId} className="product">
                                                 <h3>{product.count}</h3>
                                                 <h3>{product.productName}</h3>
                                             </div>

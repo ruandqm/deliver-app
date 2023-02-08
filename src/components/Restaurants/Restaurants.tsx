@@ -13,14 +13,6 @@ import { HomeContext } from "../../contexts/contexts";
 
 const qc = new QueryClient()
 
-/* const LoadingAPI = async () => {
-    const { data } = await axios.get(
-        "https://apigenerator.dronahq.com/api/dstqgR3A/restaurantes"
-    );
-
-    return data
-} */
-
 function Restaurants() {
     return (
         <QueryClientProvider client={qc}>
