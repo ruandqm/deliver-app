@@ -40,3 +40,26 @@
         }
     }
 }
+
+@media screen and (max-width: 1000px) {
+    .requestsContainer {
+        .myRequests {
+            width: 100%;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .requestsContainer {
+        .myRequests {
+            width: 100%;
+
+            .requests {
+                .request {
+                    width: 100%;
+                    max-width: 100%;
+                }
+            }
+        }
+    }
+}
