@@ -11,7 +11,7 @@ export const api = {
         return response.data
     },
     productsMarcos: async function () {
-        const response = await axios.get('https://apigenerator.dronahq.com/api/BmvkKnV9/requestsProducts')
+        const response = await axios.get('https://apigenerator.dronahq.com/api/fg1-lnJO/requestMarcos')
         return response.data
     }
 }

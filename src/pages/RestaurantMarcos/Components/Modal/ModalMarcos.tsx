@@ -2,10 +2,15 @@ import React, { useContext } from 'react'
 import { RestaurantMarcosContext } from '../../../../contexts/contexts'
 import VectorExit from "../../../../assets/images/vectorExit.svg"
 import "./style.scss"
+import Products from "./Products/Products"
 
 export const ModalMarcos = () => {
 
-  const { openModalMarcos, setModalMarcos, actRestaurant } = useContext(RestaurantMarcosContext)
+  const { openModalMarcos, setModalMarcos, actRestaurant, request, totalRequest } = useContext(RestaurantMarcosContext)
+
+  const finishedOrder = () =>{
+    alert("Pedido realizado com sucesso!!!! Bom apetite!!")
+  }
 
   const closeModal = () =>
     setModalMarcos(false)
@@ -20,11 +25,14 @@ export const ModalMarcos = () => {
 
           <h3>Restaurante ➖ {actRestaurant?.nome}</h3>
 
-          <div>Produtos</div>
+          <div className='products'> <Products /></div>
 
-          <span className='value'>Total</span>
+          <div className='totalValue'>
+            <span>Total: </span>
+            <span>R$ {totalRequest.toFixed(2)}</span>
+          </div>
 
-          <button className='btnRequest' type='submit'>Finalizar Pedido</button>
+          <button onClick={finishedOrder} className='btnRequest' type='submit'>Finalizar Pedido</button>
 
         </div>
       </section>

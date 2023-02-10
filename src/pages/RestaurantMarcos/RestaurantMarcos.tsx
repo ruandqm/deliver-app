@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Navbar } from '../../components/Navbar/Navbar'
 import { useParams } from 'react-router-dom'
 import { api } from '../../api/api'
-import { ICartProduct, IProduct, IRestaurant } from '../../interfaces/interfaces'
+import { ICartProduct, ICartProductMarcos, IProduct, IRestaurant } from '../../interfaces/interfaces'
 import CardProducts from './Components/CardMarcos/CardProducts'
 import "./style.scss"
 import Card from './Components/CardMarcos/CardRestaurant'
@@ -19,7 +19,8 @@ export const RestaurantMarcos = () => {
     const [restaurantId, setRestaurantId] = useState<number>()
     const [openModalMarcos, setModalMarcos] = useState(false)
 
-    const [request, setRequest] = useState<ICartProduct[]>()
+    const [request, setRequest] = useState<ICartProductMarcos[]>([])
+    const [totalRequest, setTotalRequest] = useState<number>(0)
 
     const params = useParams()
 
@@ -61,7 +62,9 @@ export const RestaurantMarcos = () => {
                 openModalMarcos,
                 setModalMarcos,
                 request,
-                setRequest,  
+                setRequest,
+                totalRequest,
+                setTotalRequest,
             }}>
                 <Navbar cartOffCanvas={openModalCart}/>
                 <div className='titleRestaurant'>
@@ -69,13 +72,12 @@ export const RestaurantMarcos = () => {
                 </div>
                 <div className="container">
                     <h1 className='title'>Produtos</h1>
-                    <section className="actRestaurant">  
-                                       
+                    <section className="actRestaurant">                                       
                         {productsToRender.map((product) => {
                             return (
                                 <CardProducts key={product.id} url={product.url} nome={product.nome} valor={product.valor}
                                 idRestaurante={product.idRestaurante} promocao={product.promocao} valorPromocional={product.valorPromocional}
-                                descricao={product.descricao} id={product.id} productId={0} descricion={''}></CardProducts>
+                                descricao={product.descricao} id={product.id} productId={0}></CardProducts>
                             )
                         })}
                     </section> 
