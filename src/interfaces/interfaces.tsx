@@ -41,9 +41,10 @@ export interface ICartProduct {
 
 export interface ICartProductMarcos {
     productId: number,
-    counter?: number,
+    count?: number,
     value?: number,
-    descricion: string,
+    name?: string,
+    descricion?: string,
 }
 
 
