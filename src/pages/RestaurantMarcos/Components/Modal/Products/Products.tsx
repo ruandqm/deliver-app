@@ -14,36 +14,40 @@ const Products: React.FC<ICartProductMarcos> = () => {
         if (newRequest[index].count > 1) {
             newRequest[index].count--;
             newRequest[index].value = newRequest[index].value - valueProduct
-       
+
         } else {
-          newRequest.splice(index, 1);
-          
+            newRequest.splice(index, 1);
+
         }
         setRequest(newRequest);
         window.localStorage.setItem(JSON.stringify(actRestaurant.id), JSON.stringify(newRequest))
-      };
+    };
 
-        
 
-        return (
-            <section className='containerModalProductsMarcos'>
-                {request.map((product: ICartProductMarcos, index:number) => {
-                    return (
-                        <>
-                            <div className='containerCartProducts'>
-                                <div className="properties">
-                                    <span className="propertiesCountNameValue">{product.count}x ➖ {product.name} ➖ Valor: R${product.value?.toFixed(2)}</span>
-                                </div>
-                                <div className="productDescription">
-                                    <p>{product.descricion}</p>
-                                </div>
-                                <p onClick={() => removeProduct(index, product.valueIndividual)} className='remove'>Remover</p>
+
+    return (
+        <section className='containerModalProductsMarcos'>
+            {request.map((product: ICartProductMarcos, index: number) => {
+                return (
+                    <>
+                        <div className='containerCartProducts'>
+                            <div className="properties">
+                                <span className="propertiesCountNameValue">{product.count}x ➖ {product.name} ➖ Valor: R${product.value?.toFixed(2)}</span>
                             </div>
-                        </>
-                    )
-                })}
-            </section>
-        )
-    }
+                            <div className="productDescription">
+                                <p>{product.descricion}</p>
+                            </div>
+                            <p onClick={() => {
+                                if (product.valueIndividual != undefined) {
+                                    removeProduct(index, product.valueIndividual)
+                                }
+                            }} className='remove'>Remover</p>
+                        </div>
+                    </>
+                )
+            })}
+        </section>
+    )
+}
 
-    export default Products
+export default Products
