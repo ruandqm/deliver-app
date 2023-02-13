@@ -1,0 +1,17 @@
+.cardContainerProducts {
+
+    .btnAddedCart{
+        background-color: var(--accent-color);
+        color: white;
+        border-radius: 0.5rem;
+        padding: 0.3rem;
+        cursor: pointer;
+        font-size: 1.7vh;
+        font-weight: 700;
+    }
+
+    .quantity{
+        display: flex;
+        margin-top: 1vh;
+    }
+}

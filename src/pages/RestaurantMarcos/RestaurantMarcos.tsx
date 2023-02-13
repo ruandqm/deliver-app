@@ -8,6 +8,7 @@ import "./style.scss"
 import Card from './Components/CardMarcos/CardRestaurant'
 import { RestaurantMarcosContext } from '../../contexts/contexts'
 import { ModalMarcos } from './Components/Modal/ModalMarcos'
+import  ModalUser  from './Components/Modal/ModalUser'
 
 export const RestaurantMarcos = () => {
     const [restaurants, setRestaurants] = useState<IRestaurant[]>()
@@ -18,6 +19,7 @@ export const RestaurantMarcos = () => {
 
     const [restaurantId, setRestaurantId] = useState<number>()
     const [openModalMarcos, setModalMarcos] = useState(false)
+    const [openModalUser, setModalUser] = useState(false)
 
     const [request, setRequest] = useState<ICartProductMarcos[]>([])
     const [totalRequest, setTotalRequest] = useState<number>(0)
@@ -65,6 +67,8 @@ export const RestaurantMarcos = () => {
                 setRequest,
                 totalRequest,
                 setTotalRequest,
+                openModalUser,
+                setModalUser,
             }}>
                 <Navbar cartOffCanvas={openModalCart}/>
                 <div className='titleRestaurant'>
@@ -77,12 +81,13 @@ export const RestaurantMarcos = () => {
                             return (
                                 <CardProducts key={product.id} url={product.url} nome={product.nome} valor={product.valor}
                                 idRestaurante={product.idRestaurante} promocao={product.promocao} valorPromocional={product.valorPromocional}
-                                descricao={product.descricao} id={product.id} productId={0}></CardProducts>
+                                descricao={product.descricao} id={product.id} productId={0} count={0} value={0}></CardProducts>
                             )
                         })}
                     </section> 
                 </div>
                 <ModalMarcos/>
+                <ModalUser />
             </RestaurantMarcosContext.Provider>
         </div>
     )

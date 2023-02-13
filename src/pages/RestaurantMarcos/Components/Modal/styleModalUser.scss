@@ -1,0 +1,78 @@
+.containerModalUser {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.418);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+
+    .modalUser {
+        width: 25%;
+        height: 50%;
+        color: white;
+        position: absolute;
+
+        .modal {
+            background-color: white;
+            height: 100%;
+            width: 100%;
+            color: black;
+            gap: 1rem;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            border-radius: 1rem;
+
+            .exit {
+                text-align: right;
+                cursor: pointer;
+            }
+
+            .title,
+            .note {
+                text-align: center;
+
+            }
+
+            .sendRequest {
+                background-color: red;
+                color: white;
+                font-size: 1rem;
+                border: none;
+                padding: 0.3rem;
+                border-radius: 2rem;
+                cursor: pointer;
+                min-width: 8vw;
+                font-weight: 700;
+            }
+
+        }
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .containerModalUser {
+        .modalUser {
+            width: 35%;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .containerModalUser {
+        .modalUser {
+            width: 45%;
+            height: 50%;
+        }
+    }
+}
+@media screen and (max-width: 380px) {
+    .containerModalUser {
+        .modalUser {
+            width: 85%;
+            height: 50%;
+        }
+    }
+}

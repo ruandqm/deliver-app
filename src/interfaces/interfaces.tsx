@@ -26,6 +26,7 @@ export interface IProduct {
     valorPromocional: number,
     descricao: string,
     id: number,
+    removeProduct?: React.MouseEventHandler,
 }
 
 export interface ICards {
@@ -41,8 +42,9 @@ export interface ICartProduct {
 
 export interface ICartProductMarcos {
     productId: number,
-    count?: number,
-    value?: number,
+    count: number,
+    value: number,
+    valueIndividual: number,
     name?: string,
     descricion?: string,
 }
