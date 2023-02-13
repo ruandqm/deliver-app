@@ -44,7 +44,6 @@ export interface ICartProductMarcos {
     productId: number,
     count: number,
     value: number,
-    valueIndividual: number,
     name?: string,
     descricion?: string,
 }
