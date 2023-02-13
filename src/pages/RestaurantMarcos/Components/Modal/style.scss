@@ -6,7 +6,8 @@
     height: 150%;
     background-color: rgb(0, 0, 0, 0.7);
     color: white;
-
+    animation-duration: 0.5s;
+    animation-name: slidein;
 
     .cart {
         position: absolute;
