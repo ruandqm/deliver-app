@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react'
 import "./style.scss"
-import axios from 'axios'
 import { RestaurantMarcosContext } from "../../../../../contexts/contexts"
 import { useContext } from "react"
-import { ICartProductMarcos, IProduct } from '../../../../../interfaces/interfaces'
+import { ICartProductMarcos } from '../../../../../interfaces/interfaces'
 
-const Products: React.FC<ICartProductMarcos & IProduct> = (props) => {
-    const { request, setRequest, actRestaurant, setTotalRequest } = useContext(RestaurantMarcosContext)
+const Products: React.FC<ICartProductMarcos> = () => {
+    const { request, setRequest, actRestaurant } = useContext(RestaurantMarcosContext)
 
     const removeProduct = (index: number, valueProduct: number) => {
         console.log(index)
