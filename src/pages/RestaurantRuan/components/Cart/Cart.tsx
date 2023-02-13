@@ -8,6 +8,7 @@ import axios from 'axios'
 
 export const Cart = () => {
     const offCanvasRef = useRef(null)
+    const [finishPurchase, setFinishPurchase] = useState(false)
     const {
         offCanvas,
         setOffCanvas,
@@ -28,6 +29,7 @@ export const Cart = () => {
         }
         axios.post('https://apigenerator.dronahq.com/api/9x07oRHk/deliveryRequests', requestValues)
         alert('Pedido registrado com sucesso!')
+        setFinishPurchase(false)
     }
 
     if (offCanvas) {
@@ -49,11 +51,33 @@ export const Cart = () => {
 
                     </div>
                     <h3>Total: R$ {totalRequestValue.toFixed(2)}</h3>
-                    <button onClick={RegistRequest} className='finishRequest'>Finalizar Pedido</button>
+                    <button onClick={() => {
+                        setOffCanvas(false)
+                        setFinishPurchase(true)
+                    }} className='finishRequest'>Finalizar Pedido</button>
                 </div>
             </section>
         )
-    } else {
+    } if (finishPurchase) {
+        return (
+            <section className='finishPurchaseModal'>
+                <div className="modalContent">
+                    <div className="formItem">
+                        <label htmlFor="name">Seu nome:</label>
+                        <input type="text" />
+                    </div>
+                    <div className="formItem">
+                        <label htmlFor="email">Seu e-mail:</label>
+                        <input type="email" />
+                    </div>
+                    <button onClick={RegistRequest} className='finishRequest success'>Finalizar Pedido</button>
+                    <button onClick={() => setFinishPurchase(false)} className='finishRequest abort'>Cancelar</button>
+                </div>
+
+            </section>
+        )
+    }
+    else {
         return null
     }
 }
