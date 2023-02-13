@@ -1,18 +1,33 @@
-import React from 'react'
 import "./style.scss"
-import axios from 'axios'
 import { RestaurantMarcosContext } from "../../../../../contexts/contexts"
 import { useContext } from "react"
 import { ICartProductMarcos } from '../../../../../interfaces/interfaces'
 
-const Products = () => {
+const Products: React.FC<ICartProductMarcos> = () => {
     const { request, setRequest, actRestaurant } = useContext(RestaurantMarcosContext)
-    
-    window.localStorage.setItem(JSON.stringify(actRestaurant.id), JSON.stringify(request))
+
+    const removeProduct = (index: number, valueProduct: number) => {
+        console.log(index)
+        console.log(valueProduct)
+        const newRequest = [...request];
+        console.log(newRequest)
+        if (newRequest[index].count > 1) {
+            newRequest[index].count--;
+            newRequest[index].value = newRequest[index].value - valueProduct
+
+        } else {
+            newRequest.splice(index, 1);
+
+        }
+        setRequest(newRequest);
+        window.localStorage.setItem(JSON.stringify(actRestaurant.id), JSON.stringify(newRequest))
+    };
+
+
 
     return (
         <section className='containerModalProductsMarcos'>
-            {request.map((product: ICartProductMarcos) => {
+            {request.map((product: ICartProductMarcos, index: number) => {
                 return (
                     <>
                         <div className='containerCartProducts'>
@@ -22,7 +37,11 @@ const Products = () => {
                             <div className="productDescription">
                                 <p>{product.descricion}</p>
                             </div>
-                            <p className='remove'>Remover</p>
+                            <p onClick={() => {
+                                if (product.valueIndividual != undefined) {
+                                    removeProduct(index, product.valueIndividual)
+                                }
+                            }} className='remove'>Remover</p>
                         </div>
                     </>
                 )

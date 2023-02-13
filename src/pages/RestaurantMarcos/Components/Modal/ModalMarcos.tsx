@@ -6,16 +6,18 @@ import Products from "./Products/Products"
 
 export const ModalMarcos = () => {
 
-  const { openModalMarcos, setModalMarcos, actRestaurant, request, totalRequest } = useContext(RestaurantMarcosContext)
+  const { openModalMarcos, setModalMarcos, actRestaurant, setModalUser, totalRequest } = useContext(RestaurantMarcosContext)
 
-  const finishedOrder = () =>{
-    alert("Pedido realizado com sucesso!!!! Bom apetite!!")
+  const finishedOrder = () => {
+    setModalUser(true)
+    setModalMarcos(false)
   }
 
   const closeModal = () =>
     setModalMarcos(false)
 
   if (openModalMarcos) {
+      
     return (
 
       <section className='cartContainer'>
@@ -24,8 +26,8 @@ export const ModalMarcos = () => {
           <span onClick={closeModal}><img className='close' src={VectorExit} alt="Button Exit" />Seu pedido em</span>
 
           <h3>Restaurante ➖ {actRestaurant?.nome}</h3>
-
-          <div className='products'> <Products /></div>
+          
+          <div className='products'> <Products productId={0} count={0} value={0} valueIndividual={0} /></div>
 
           <div className='totalValue'>
             <span>Total: </span>
@@ -35,6 +37,7 @@ export const ModalMarcos = () => {
           <button onClick={finishedOrder} className='btnRequest' type='submit'>Finalizar Pedido</button>
 
         </div>
+      
       </section>
     )
   } else { return null }
